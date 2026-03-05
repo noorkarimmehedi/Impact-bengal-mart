@@ -122,8 +122,8 @@
         "text"
       ],
       "settings": {
-        "logo": "shopify://shop_images/8_d83f68b4-c6f5-4007-a3aa-39b16b6039df.png",
-        "logo_width": 210,
+        "logo": "shopify://shop_images/bengal-mart-logo.svg",
+        "logo_width": 260,
         "show_social_media": true,
         "show_payment_icons": true,
         "show_country_selector": true,
