@@ -49,11 +49,11 @@
       "settings": {
         "enable_sticky": false,
         "text_size": "text-base",
-        "navigation_mode": "scrolling",
+        "navigation_mode": "arrows",
         "scrolling_speed": 10,
-        "background": "#7900fd",
+        "background": "#f5f5f5",
         "background_gradient": "",
-        "text_color": "#f5f5f5"
+        "text_color": "#000000"
       }
     },
     "header": {
