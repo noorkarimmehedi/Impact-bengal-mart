@@ -111,7 +111,7 @@
           "type": "text",
           "settings": {
             "title": "About",
-            "content": "<p><strong>\"আঙ্গনালয়\"</strong> অর্থে <strong>আপনার ঘর ও জীবনযাত্রার জন্য একটি সম্পূর্ণ সমাধান </strong>। আপনার আঙ্গন থেকে রান্নাঘর – সবকিছুর জন্য আঙ্গনালয়!</p><p></p><p>Nur Amin, Founder of Angonaloy-আঙ্গনালয় </p>",
+            "content": "<p>আপনার ঘর ও জীবনের প্রতিদিনের সঙ্গী।প্রয়োজনীয় সবকিছু, এক জায়গায় – <strong>বেঙ্গল মার্ট!</strong></p>",
             "enable_follow_on_shop": true
           }
         }
@@ -122,8 +122,8 @@
         "text"
       ],
       "settings": {
-        "logo": "shopify://shop_images/bengal-mart-logo.svg",
-        "logo_width": 260,
+        "logo": "shopify://shop_images/10df07f61007ea7568690f896b0e0a4a.svg",
+        "logo_width": 120,
         "show_social_media": true,
         "show_payment_icons": true,
         "show_country_selector": true,
