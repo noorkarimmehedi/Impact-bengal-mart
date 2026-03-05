@@ -51,9 +51,9 @@
         "text_size": "text-base",
         "navigation_mode": "scrolling",
         "scrolling_speed": 10,
-        "background": "#f5f5f5",
+        "background": "#7900fd",
         "background_gradient": "",
-        "text_color": "#000000"
+        "text_color": "#f5f5f5"
       }
     },
     "header": {
