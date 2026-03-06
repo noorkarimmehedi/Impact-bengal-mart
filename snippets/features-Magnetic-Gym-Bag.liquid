@@ -1,0 +1,147 @@
+<div class="pf-block">
+  <ul class="pf-list">
+    <li class="pf-item">
+      <span class="pf-index">01</span>
+      <span class="pf-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none">
+          <defs>
+            <linearGradient id="pf-grad1" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#09184c"/>
+              <stop offset="100%" style="stop-color:#2c4ff0"/>
+            </linearGradient>
+          </defs>
+          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" fill="url(#pf-grad1)"/>
+          <path d="m9 12 2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="pf-text">Instant Relief</span>
+    </li>
+    <li class="pf-item">
+      <span class="pf-index">02</span>
+      <span class="pf-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none">
+          <defs>
+            <linearGradient id="pf-grad2" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#09184c"/>
+              <stop offset="100%" style="stop-color:#2c4ff0"/>
+            </linearGradient>
+          </defs>
+          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" fill="url(#pf-grad2)"/>
+          <path d="m9 12 2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="pf-text">Clinically Tested</span>
+    </li>
+    <li class="pf-item">
+      <span class="pf-index">03</span>
+      <span class="pf-icon">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="16" height="16" fill="none">
+          <defs>
+            <linearGradient id="pf-grad3" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" style="stop-color:#09184c"/>
+              <stop offset="100%" style="stop-color:#2c4ff0"/>
+            </linearGradient>
+          </defs>
+          <path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z" fill="url(#pf-grad3)"/>
+          <path d="m9 12 2 2 4-4" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </span>
+      <span class="pf-text">Podiatrist Recommended</span>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .pf-block {
+    --pf-gradient: linear-gradient(90deg, #09184c 0%, #2c4ff0 100%);
+    --pf-ink: #0A0A0A;
+    --pf-rule: #D1D5DB;
+    --pf-muted: #9ca3af;
+    --pf-bg: #ffffff;
+
+    background: var(--pf-bg);
+    border: 1px solid var(--pf-ink);
+    border-top: 3px solid transparent;
+    border-image: var(--pf-gradient) 1;
+    /* border-image doesn't work on shorthand, so use this approach: */
+    border-top: none;
+    position: relative;
+    margin: 12px 0;
+    padding: 0;
+    width: 100%;
+    box-sizing: border-box;
+    overflow: hidden;
+  }
+
+  /* Gradient top accent bar */
+  .pf-block::before {
+    content: '';
+    display: block;
+    height: 3px;
+    background: linear-gradient(90deg, #09184c 0%, #2c4ff0 100%);
+    width: 100%;
+  }
+
+  .pf-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  .pf-item {
+    display: grid;
+    grid-template-columns: 32px 28px 1fr;
+    align-items: center;
+    gap: 12px;
+    padding: 10px 14px 10px 0;
+    border-bottom: 1px solid var(--pf-rule);
+    position: relative;
+    transition: background 0.15s ease;
+  }
+
+  .pf-item:last-child {
+    border-bottom: none;
+  }
+
+  .pf-item:hover {
+    background: #f5f7ff;
+  }
+
+  .pf-index {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    line-height: 1;
+    text-align: right;
+    padding-right: 6px;
+    border-right: 1px solid var(--pf-rule);
+    align-self: stretch;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /* Gradient text for index numbers */
+    background: linear-gradient(90deg, #09184c 0%, #2c4ff0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .pf-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    flex-shrink: 0;
+  }
+
+  .pf-text {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-size: 11.5px;
+    font-weight: 400;
+    color: var(--pf-ink);
+    line-height: 1.5;
+    letter-spacing: 0.02em;
+  }
+</style>
