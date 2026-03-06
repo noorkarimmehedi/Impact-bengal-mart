@@ -49,6 +49,12 @@
           "type": "separator",
           "settings": {}
         },
+        "liquid_NJd7iK": {
+          "type": "liquid",
+          "settings": {
+            "liquid": "{% render 'features-Magnetic-Gym-Bag' %}"
+          }
+        },
         "description": {
           "type": "description",
           "settings": {
@@ -107,6 +113,7 @@
         "rating",
         "payment_terms",
         "separator",
+        "liquid_NJd7iK",
         "description",
         "variant_picker",
         "quantity_selector",
