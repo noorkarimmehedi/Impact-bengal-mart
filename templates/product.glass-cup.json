@@ -96,7 +96,7 @@
         "liquid_8RQ73R": {
           "type": "liquid",
           "settings": {
-            "liquid": "{% render 'live-fomo-counter', initial_stock: 45 %}"
+            "liquid": "{% render 'icon-Magnetic-Gym-Bag' %}"
           }
         },
         "liquid_fd3xE6": {
