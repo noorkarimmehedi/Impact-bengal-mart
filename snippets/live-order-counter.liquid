@@ -1,24 +1,42 @@
 {% comment %}
-  Live Order Counter Snippet — Swiss Grid / One Line v3
+  Live Order Counter Snippet — Swiss Grid / One Line / Centered
   Usage: {% render 'live-order-counter' %}
 {% endcomment %}
 
 <div class="loc" aria-live="polite">
-  <span class="loc__dot"></span>
-  <span class="loc__text">Order in <strong class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></strong> to ship today</span>
+  <span class="loc__rule"></span>
+  <span class="loc__inner">
+    <span class="loc__dot"></span>
+    <span class="loc__text">Order in <strong class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></strong> to ship today</span>
+  </span>
+  <span class="loc__rule"></span>
 </div>
 
 <style>
   .loc {
-    display: inline-flex;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
     align-items: center;
-    gap: 8px;
-    height: 34px;
-    padding: 0 0;
+    height: 36px;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
     width: 100%;
     box-sizing: border-box;
-    border-bottom: 1px solid #e8e8e8;
+    border-top: 1.5px solid #111;
+    border-bottom: 1.5px solid #111;
+    background: #fff;
+  }
+
+  .loc__rule {
+    display: block;
+    height: 1px;
+    background: #d0d0d0;
+  }
+
+  .loc__inner {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 20px;
   }
 
   .loc__dot {
@@ -31,18 +49,18 @@
   }
 
   .loc__text {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 400;
-    letter-spacing: 0.06em;
+    letter-spacing: 0.1em;
     color: #888;
     text-transform: uppercase;
     white-space: nowrap;
   }
 
   .loc__time {
-    font-size: 12px;
+    font-size: 11px;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: 0.06em;
     color: #111;
     font-variant-numeric: tabular-nums;
   }
