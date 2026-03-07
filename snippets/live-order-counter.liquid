@@ -1,80 +1,76 @@
 {% comment %}
-  Live Order Counter Snippet — Swiss Grid / One Line
+  Live Order Counter Snippet — Swiss Grid / One Line v2
   Usage: {% render 'live-order-counter' %}
 {% endcomment %}
 
 <div class="loc" aria-live="polite">
-  <span class="loc__tag">SHIPS TODAY</span>
-  <span class="loc__rule"></span>
-  <span class="loc__label">Order within</span>
-  <span class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></span>
   <span class="loc__dot"></span>
+  <span class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></span>
+  <span class="loc__label">to ship today</span>
+  <span class="loc__line"></span>
+  <span class="loc__cta">FREE DELIVERY</span>
 </div>
 
 <style>
   .loc {
     display: flex;
     align-items: center;
-    gap: 12px;
-    height: 36px;
-    padding: 0 16px;
-    border-top: 1.5px solid #111;
-    border-bottom: 1.5px solid #111;
+    gap: 10px;
+    height: 38px;
+    padding: 0 14px;
+    border-left: 3px solid #111;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: #fff;
+    background: #fafafa;
     width: 100%;
     box-sizing: border-box;
   }
 
-  .loc__tag {
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 0.2em;
-    color: #fff;
-    background: #111;
-    padding: 3px 7px;
-    text-transform: uppercase;
+  .loc__dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #e63329;
     flex-shrink: 0;
-  }
-
-  .loc__rule {
-    display: block;
-    width: 1.5px;
-    height: 16px;
-    background: #d1d1d1;
-    flex-shrink: 0;
-  }
-
-  .loc__label {
-    font-size: 11px;
-    font-weight: 400;
-    letter-spacing: 0.08em;
-    color: #888;
-    text-transform: uppercase;
-    flex-shrink: 0;
+    animation: loc-blink 1s ease-in-out infinite;
   }
 
   .loc__time {
-    font-size: 15px;
+    font-size: 17px;
     font-weight: 800;
-    letter-spacing: 0.04em;
+    letter-spacing: -0.02em;
     color: #111;
     font-variant-numeric: tabular-nums;
     flex-shrink: 0;
   }
 
-  .loc__dot {
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #e63329;
+  .loc__label {
+    font-size: 10px;
+    font-weight: 400;
+    letter-spacing: 0.12em;
+    color: #999;
+    text-transform: uppercase;
     flex-shrink: 0;
-    animation: loc-blink 1.2s ease-in-out infinite;
+  }
+
+  .loc__line {
+    flex: 1;
+    height: 1px;
+    background: #e0e0e0;
+    min-width: 12px;
+  }
+
+  .loc__cta {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.22em;
+    color: #111;
+    text-transform: uppercase;
+    flex-shrink: 0;
   }
 
   @keyframes loc-blink {
     0%, 100% { opacity: 1; }
-    50%       { opacity: 0.2; }
+    50%       { opacity: 0.15; }
   }
 </style>
 
