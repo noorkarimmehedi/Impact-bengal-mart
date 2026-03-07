@@ -1,83 +1,97 @@
 {% comment %}
-  Live Order Counter Snippet
+  Live Order Counter Snippet — Swiss Grid / One Line
   Usage: {% render 'live-order-counter' %}
 {% endcomment %}
 
-<div class="live-order-counter">
-  <span class="live-order-counter__icon">🚚</span>
-  <span class="live-order-counter__text">
-    Order within
-    <strong class="live-order-counter__timer">
-      <span class="live-order-counter__minutes">10</span>min
-      <span class="live-order-counter__seconds">00</span>s
-    </strong>
-    to ship today
-  </span>
+<div class="loc" aria-live="polite">
+  <span class="loc__tag">SHIPS TODAY</span>
+  <span class="loc__rule"></span>
+  <span class="loc__label">Order within</span>
+  <span class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></span>
+  <span class="loc__dot"></span>
 </div>
 
 <style>
-  .live-order-counter {
+  .loc {
     display: flex;
     align-items: center;
-    gap: 10px;
-    background-color: #ffffff;
-    border: 1px solid #e5e7eb;
-    border-radius: 0;
-    padding: 8px 16px;
-    margin: 8px 0;
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
-    font-size: 15px;
-    color: #374151;
+    gap: 12px;
+    height: 36px;
+    padding: 0 16px;
+    border-top: 1.5px solid #111;
+    border-bottom: 1.5px solid #111;
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    background: #fff;
     width: 100%;
     box-sizing: border-box;
-    overflow: hidden;
   }
 
-  .live-order-counter__icon {
-    font-size: 20px;
-    line-height: 1;
+  .loc__tag {
+    font-size: 8px;
+    font-weight: 800;
+    letter-spacing: 0.2em;
+    color: #fff;
+    background: #111;
+    padding: 3px 7px;
+    text-transform: uppercase;
     flex-shrink: 0;
   }
 
-  .live-order-counter__text {
-    font-size: 15px;
-    color: #374151;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    min-width: 0;
+  .loc__rule {
+    display: block;
+    width: 1.5px;
+    height: 16px;
+    background: #d1d1d1;
+    flex-shrink: 0;
   }
 
-  .live-order-counter__timer {
-    color: #2563eb;
-    font-weight: 700;
+  .loc__label {
+    font-size: 11px;
+    font-weight: 400;
+    letter-spacing: 0.08em;
+    color: #888;
+    text-transform: uppercase;
+    flex-shrink: 0;
+  }
+
+  .loc__time {
+    font-size: 15px;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    color: #111;
+    font-variant-numeric: tabular-nums;
+    flex-shrink: 0;
+  }
+
+  .loc__dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: #e63329;
+    flex-shrink: 0;
+    animation: loc-blink 1.2s ease-in-out infinite;
+  }
+
+  @keyframes loc-blink {
+    0%, 100% { opacity: 1; }
+    50%       { opacity: 0.2; }
   }
 </style>
 
 <script>
   (function () {
-    var minutesEl = document.querySelector('.live-order-counter__minutes');
-    var secondsEl = document.querySelector('.live-order-counter__seconds');
-
-    if (!minutesEl || !secondsEl) return;
-
-    var totalSeconds = 10 * 60;
-
-    function update() {
-      if (totalSeconds <= 0) {
-        totalSeconds = 10 * 60;
-      }
-
-      var m = Math.floor(totalSeconds / 60);
-      var s = totalSeconds % 60;
-
-      minutesEl.textContent = m < 10 ? '0' + m : m;
-      secondsEl.textContent = s < 10 ? '0' + s : s;
-
-      totalSeconds--;
+    var m = document.getElementById('loc-m');
+    var s = document.getElementById('loc-s');
+    if (!m || !s) return;
+    var t = 10 * 60;
+    function tick() {
+      if (t <= 0) t = 10 * 60;
+      var mm = Math.floor(t / 60), ss = t % 60;
+      m.textContent = mm < 10 ? '0' + mm : mm;
+      s.textContent = ss < 10 ? '0' + ss : ss;
+      t--;
     }
-
-    update();
-    setInterval(update, 1000);
+    tick();
+    setInterval(tick, 1000);
   })();
 </script>
