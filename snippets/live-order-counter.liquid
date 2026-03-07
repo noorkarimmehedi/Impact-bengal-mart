@@ -1,237 +1,83 @@
 {% comment %}
-  Live Order Counter Snippet — Swiss Grid Edition
+  Live Order Counter Snippet
   Usage: {% render 'live-order-counter' %}
 {% endcomment %}
 
-<div class="loc-root" aria-live="polite" aria-label="Shipping countdown timer">
-  <div class="loc-grid">
-
-    <div class="loc-col loc-col--label">
-      <span class="loc-rule"></span>
-      <span class="loc-eyebrow">DISPATCH</span>
-    </div>
-
-    <div class="loc-col loc-col--timer">
-      <div class="loc-timer-block">
-        <span class="loc-digit" id="loc-minutes">10</span>
-        <span class="loc-sep">:</span>
-        <span class="loc-digit" id="loc-seconds">00</span>
-      </div>
-      <div class="loc-unit-row">
-        <span class="loc-unit">MIN</span>
-        <span class="loc-unit-gap"></span>
-        <span class="loc-unit">SEC</span>
-      </div>
-    </div>
-
-    <div class="loc-col loc-col--cta">
-      <span class="loc-rule"></span>
-      <span class="loc-cta-text">ORDER NOW<br>SHIPS TODAY</span>
-      <span class="loc-dot" aria-hidden="true"></span>
-    </div>
-
-  </div>
+<div class="live-order-counter">
+  <span class="live-order-counter__icon">🚚</span>
+  <span class="live-order-counter__text">
+    Order within
+    <strong class="live-order-counter__timer">
+      <span class="live-order-counter__minutes">10</span>min
+      <span class="live-order-counter__seconds">00</span>s
+    </strong>
+    to ship today
+  </span>
 </div>
 
 <style>
-  .loc-root {
-    --loc-black: #0a0a0a;
-    --loc-white: #f5f4f0;
-    --loc-red: #e63329;
-    --loc-mid: #6b6b6b;
-    --loc-border: 1.5px solid var(--loc-black);
-    --loc-font: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-
-    background: var(--loc-white);
-    border-top: var(--loc-border);
-    border-bottom: var(--loc-border);
+  .live-order-counter {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background-color: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 0;
+    padding: 8px 16px;
+    margin: 8px 0;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+    font-size: 15px;
+    color: #374151;
     width: 100%;
     box-sizing: border-box;
     overflow: hidden;
-    font-family: var(--loc-font);
   }
 
-  .loc-grid {
-    display: grid;
-    grid-template-columns: 72px 1fr 88px;
-    align-items: stretch;
-    min-height: 64px;
+  .live-order-counter__icon {
+    font-size: 20px;
+    line-height: 1;
+    flex-shrink: 0;
   }
 
-  /* ── COLUMNS ── */
-  .loc-col {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    padding: 10px 14px;
-    box-sizing: border-box;
+  .live-order-counter__text {
+    font-size: 15px;
+    color: #374151;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    min-width: 0;
   }
 
-  .loc-col--label {
-    border-right: var(--loc-border);
-    padding-left: 12px;
-    gap: 6px;
-  }
-
-  .loc-col--timer {
-    padding: 8px 16px;
-    gap: 2px;
-  }
-
-  .loc-col--cta {
-    border-left: var(--loc-border);
-    background: var(--loc-black);
-    color: var(--loc-white);
-    padding: 10px 12px;
-    gap: 5px;
-    position: relative;
-  }
-
-  /* ── RULE LINE ── */
-  .loc-rule {
-    display: block;
-    width: 20px;
-    height: 1.5px;
-    background: var(--loc-red);
-  }
-
-  /* ── EYEBROW ── */
-  .loc-eyebrow {
-    font-size: 8px;
+  .live-order-counter__timer {
+    color: #2563eb;
     font-weight: 700;
-    letter-spacing: 0.18em;
-    color: var(--loc-mid);
-    text-transform: uppercase;
-    line-height: 1;
-  }
-
-  /* ── TIMER ── */
-  .loc-timer-block {
-    display: flex;
-    align-items: baseline;
-    gap: 0;
-    line-height: 1;
-  }
-
-  .loc-digit {
-    font-size: 36px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    color: var(--loc-black);
-    font-variant-numeric: tabular-nums;
-    min-width: 2ch;
-    display: inline-block;
-    text-align: center;
-  }
-
-  .loc-sep {
-    font-size: 32px;
-    font-weight: 300;
-    color: var(--loc-red);
-    line-height: 1;
-    padding: 0 2px;
-    transform: translateY(-2px);
-    display: inline-block;
-  }
-
-  .loc-unit-row {
-    display: flex;
-    align-items: center;
-    gap: 0;
-  }
-
-  .loc-unit {
-    font-size: 7.5px;
-    font-weight: 700;
-    letter-spacing: 0.15em;
-    color: var(--loc-mid);
-    text-transform: uppercase;
-    min-width: 2ch;
-    text-align: center;
-    flex: 0 0 auto;
-  }
-
-  /* Spacer to align MIN/SEC under digits — accounts for digit width */
-  .loc-unit-gap {
-    flex: 1;
-    min-width: 14px;
-    max-width: 22px;
-  }
-
-  /* ── CTA ── */
-  .loc-cta-text {
-    font-size: 8.5px;
-    font-weight: 800;
-    letter-spacing: 0.14em;
-    line-height: 1.5;
-    color: var(--loc-white);
-    text-transform: uppercase;
-  }
-
-  .loc-dot {
-    position: absolute;
-    bottom: 9px;
-    right: 10px;
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--loc-red);
-    animation: loc-pulse 1.4s ease-in-out infinite;
-  }
-
-  @keyframes loc-pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50%       { opacity: 0.4; transform: scale(0.7); }
-  }
-
-  /* ── DIGIT FLIP FLASH ── */
-  .loc-digit.loc-flash {
-    color: var(--loc-red);
-  }
-
-  /* ── RESPONSIVE ── */
-  @media (max-width: 360px) {
-    .loc-grid {
-      grid-template-columns: 56px 1fr 70px;
-    }
-    .loc-digit {
-      font-size: 28px;
-    }
-    .loc-sep {
-      font-size: 24px;
-    }
   }
 </style>
 
 <script>
   (function () {
-    var mEl = document.getElementById('loc-minutes');
-    var sEl = document.getElementById('loc-seconds');
-    if (!mEl || !sEl) return;
+    var minutesEl = document.querySelector('.live-order-counter__minutes');
+    var secondsEl = document.querySelector('.live-order-counter__seconds');
 
-    var total = 10 * 60;
+    if (!minutesEl || !secondsEl) return;
 
-    function flash(el) {
-      el.classList.add('loc-flash');
-      setTimeout(function () { el.classList.remove('loc-flash'); }, 180);
+    var totalSeconds = 10 * 60;
+
+    function update() {
+      if (totalSeconds <= 0) {
+        totalSeconds = 10 * 60;
+      }
+
+      var m = Math.floor(totalSeconds / 60);
+      var s = totalSeconds % 60;
+
+      minutesEl.textContent = m < 10 ? '0' + m : m;
+      secondsEl.textContent = s < 10 ? '0' + s : s;
+
+      totalSeconds--;
     }
 
-    function tick() {
-      if (total <= 0) total = 10 * 60;
-
-      var m = Math.floor(total / 60);
-      var s = total % 60;
-
-      var mStr = m < 10 ? '0' + m : '' + m;
-      var sStr = s < 10 ? '0' + s : '' + s;
-
-      if (mEl.textContent !== mStr) { mEl.textContent = mStr; flash(mEl); }
-      if (sEl.textContent !== sStr) { sEl.textContent = sStr; flash(sEl); }
-
-      total--;
-    }
-
-    tick();
-    setInterval(tick, 1000);
+    update();
+    setInterval(update, 1000);
   })();
 </script>
