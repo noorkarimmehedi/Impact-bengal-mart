@@ -1,71 +1,50 @@
 {% comment %}
-  Live Order Counter Snippet — Swiss Grid / One Line v2
+  Live Order Counter Snippet — Swiss Grid / One Line v3
   Usage: {% render 'live-order-counter' %}
 {% endcomment %}
 
 <div class="loc" aria-live="polite">
   <span class="loc__dot"></span>
-  <span class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></span>
-  <span class="loc__label">to ship today</span>
-  <span class="loc__line"></span>
-  <span class="loc__cta">ORDER NOW</span>
+  <span class="loc__text">Order in <strong class="loc__time"><span id="loc-m">10</span>:<span id="loc-s">00</span></strong> to ship today</span>
 </div>
 
 <style>
   .loc {
-    display: flex;
+    display: inline-flex;
     align-items: center;
-    gap: 10px;
-    height: 38px;
-    padding: 0 14px;
-    border-left: 3px solid #111;
+    gap: 8px;
+    height: 34px;
+    padding: 0 0;
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-    background: #fafafa;
     width: 100%;
     box-sizing: border-box;
+    border-bottom: 1px solid #e8e8e8;
   }
 
   .loc__dot {
-    width: 6px;
-    height: 6px;
+    width: 5px;
+    height: 5px;
     border-radius: 50%;
     background: #e63329;
     flex-shrink: 0;
-    animation: loc-blink 1s ease-in-out infinite;
+    animation: loc-blink 1.2s ease-in-out infinite;
+  }
+
+  .loc__text {
+    font-size: 12px;
+    font-weight: 400;
+    letter-spacing: 0.06em;
+    color: #888;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .loc__time {
-    font-size: 17px;
+    font-size: 12px;
     font-weight: 800;
-    letter-spacing: -0.02em;
+    letter-spacing: 0.04em;
     color: #111;
     font-variant-numeric: tabular-nums;
-    flex-shrink: 0;
-  }
-
-  .loc__label {
-    font-size: 10px;
-    font-weight: 400;
-    letter-spacing: 0.12em;
-    color: #999;
-    text-transform: uppercase;
-    flex-shrink: 0;
-  }
-
-  .loc__line {
-    flex: 1;
-    height: 1px;
-    background: #e0e0e0;
-    min-width: 12px;
-  }
-
-  .loc__cta {
-    font-size: 8px;
-    font-weight: 800;
-    letter-spacing: 0.22em;
-    color: #111;
-    text-transform: uppercase;
-    flex-shrink: 0;
   }
 
   @keyframes loc-blink {
