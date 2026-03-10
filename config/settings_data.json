@@ -73,6 +73,11 @@
         "type": "shopify://apps/triplewhale/blocks/triple_pixel_snippet/483d496b-3f1a-4609-aea7-8eee3b6b7a2a",
         "disabled": false,
         "settings": {}
+      },
+      "7577058419056568960": {
+        "type": "shopify://apps/rapi-tracking/blocks/app-embed/35108bf4-3d5b-4ce4-8a88-fcd48d6682ec",
+        "disabled": false,
+        "settings": {}
       }
     }
   },
