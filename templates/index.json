@@ -77,8 +77,6 @@
         "ai_gen_block_f031582_LFGh7x": {
           "type": "ai_gen_block_f031582",
           "settings": {
-            "image_desktop": "shopify://shop_images/Facebook_Cover.webp",
-            "image_mobile": "shopify://shop_images/Heroimg_11zon.webp",
             "show_overlay": true,
             "overlay_color": "#000000",
             "overlay_opacity": 5,
@@ -133,7 +131,6 @@
         "1664424046b00c932c-0": {
           "type": "item",
           "settings": {
-            "image": "shopify://shop_images/617Xie9ePfL._AC_SL1500.jpg",
             "stretch_image": true,
             "link_text": "",
             "link_url": "shopify://products/fruit-drain-and-storage-basket-with-lid",
@@ -264,7 +261,7 @@
             "nav_button_color": "#ffffff",
             "nav_button_hover_color": "#f5f5f5",
             "nav_icon_color": "#1a1a1a",
-            "collection_1": "bestsellers",
+            "collection_1": "best-sellers",
             "collection_2": "home",
             "collection_3": "kitchen",
             "collection_4": "under-800",
