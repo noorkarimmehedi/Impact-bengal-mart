@@ -61,6 +61,7 @@
       "settings": {
         "enable_sticky": true,
         "hide_on_scroll": false,
+        "logo": "shopify://shop_images/Untitled_design_9.webp",
         "logo_max_width": 120,
         "logo_mobile_max_width": 120,
         "menu": "main-menu",
