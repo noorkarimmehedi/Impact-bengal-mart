@@ -51,9 +51,9 @@
         "text_size": "text-base",
         "navigation_mode": "arrows",
         "scrolling_speed": 10,
-        "background": "#f5f5f5",
+        "background": "#321B13",
         "background_gradient": "",
-        "text_color": "#000000"
+        "text_color": "#FFFFFF"
       }
     },
     "header": {
@@ -61,7 +61,6 @@
       "settings": {
         "enable_sticky": true,
         "hide_on_scroll": false,
-        "logo": "shopify://shop_images/bengal-mart-logo_02.svg",
         "logo_max_width": 120,
         "logo_mobile_max_width": 120,
         "menu": "main-menu",
