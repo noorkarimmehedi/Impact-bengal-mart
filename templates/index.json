@@ -269,7 +269,7 @@
             "card_background": "#ffffff",
             "card_border_color": "#e5e5e5",
             "hover_border_color": "#cccccc",
-            "card_border_radius": 4,
+            "card_border_radius": 8,
             "text_spacing": 16,
             "category_name_size": 14,
             "category_name_color": "#1a1a1a",
