@@ -253,13 +253,13 @@
         "ai_gen_block_29bc342_xFwrcc": {
           "type": "ai_gen_block_29bc342",
           "settings": {
-            "padding_top": 60,
+            "padding_top": 112,
             "padding_bottom": 60,
             "background_color": "#ffffff",
             "heading": "Shop by Category",
             "heading_size": 32,
             "heading_color": "#1a1a1a",
-            "heading_alignment": "center",
+            "heading_alignment": "left",
             "subheading": "",
             "subheading_size": 15,
             "subheading_color": "#666666",
