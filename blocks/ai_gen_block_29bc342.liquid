@@ -150,6 +150,11 @@
   }
 
   @media screen and (max-width: 749px) {
+    .ai-category-slider-{{ ai_gen_id }} {
+      padding-top: {{ block.settings.padding_top | times: 0.6 }}px;
+      padding-bottom: {{ block.settings.padding_bottom | times: 0.6 }}px;
+    }
+
     .ai-category-slider-title-{{ ai_gen_id }} {
       font-size: {{ block.settings.heading_size | times: 0.8 }}px;
     }
@@ -169,6 +174,7 @@
 {% endstyle %}
 
 <category-slider-{{ ai_gen_id }} class="ai-category-slider-{{ ai_gen_id }}" {{ block.shopify_attributes }}>
+  <div class="page-width">
   <div class="ai-category-slider-container-{{ ai_gen_id }}">
     {% if block.settings.heading != blank or block.settings.subheading != blank %}
       <div class="ai-category-slider-header-{{ ai_gen_id }}">
@@ -259,6 +265,7 @@
         </div>
       {% endif %}
     </div>
+  </div>
   </div>
 </category-slider-{{ ai_gen_id }}>
 
