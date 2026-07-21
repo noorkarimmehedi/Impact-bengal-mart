@@ -265,7 +265,7 @@
             "subheading_size": 15,
             "subheading_color": "#666666",
             "heading_font": "'Assistant', sans-serif",
-            "card_shape": "square",
+            "card_shape": "circle",
             "card_size": 124,
             "items_per_view_desktop": 4,
             "items_per_view_mobile": 2,
