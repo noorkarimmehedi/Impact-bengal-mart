@@ -165,23 +165,19 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "recommendations_count": 10,
         "products": [],
         "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_per_row_mobile": "2",
+        "products_count": 8,
         "products_per_row_desktop": 3,
-        "subheading": "",
         "title": "You may also like",
-        "content": "",
+        "heading_font": "system_ui_n4",
+        "card_corner_radius": 12,
+        "mobile_card_gap": 8,
         "background": "",
         "background_gradient": "",
         "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": ""
+        "accent_color": "",
+        "product_card_background": ""
       }
     }
   },
