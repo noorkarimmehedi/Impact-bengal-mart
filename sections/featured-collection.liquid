@@ -7,7 +7,11 @@
     --best-sellers-text: {{ section.settings.text_color | default: settings.text_color | default: '#1a1a1a' }};
     --best-sellers-accent: {{ section.settings.accent_color | default: '#7900FD' }};
     --best-sellers-border: #e8e8e8;
-    --best-sellers-radius: 12px;
+    --best-sellers-radius: {{ section.settings.card_corner_radius | default: 12 }}px;
+    --best-sellers-heading-font: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    --best-sellers-heading-weight: {{ section.settings.heading_font.weight }};
+    --best-sellers-heading-style: {{ section.settings.heading_font.style }};
+    --best-sellers-mobile-gap: {{ section.settings.mobile_card_gap | default: 8 }}px;
   }
 
   #shopify-section-{{ section.id }} .best-sellers {
@@ -31,7 +35,9 @@
 
   .best-sellers__title {
     font-size: 32px;
-    font-weight: 700;
+    font-family: var(--best-sellers-heading-font);
+    font-weight: var(--best-sellers-heading-weight);
+    font-style: var(--best-sellers-heading-style);
     line-height: 1.2;
     color: var(--best-sellers-text);
     margin: 0;
@@ -69,6 +75,12 @@
     padding: 4px 0 8px;
   }
 
+  @media (max-width: 699px) {
+    .best-sellers__track {
+      gap: var(--best-sellers-mobile-gap);
+    }
+  }
+
   .best-sellers__track::-webkit-scrollbar {
     display: none;
   }
@@ -90,7 +102,7 @@
 
   @media (max-width: 699px) {
     .best-sellers__slide {
-      flex: 0 0 calc(50% - 10px);
+      flex: 0 0 calc(50% - var(--best-sellers-mobile-gap) / 2);
     }
   }
 
@@ -618,6 +630,40 @@
       "id": "link_text",
       "label": "Link text",
       "default": "View all products"
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "helvetica_n7"
+    },
+    {
+      "type": "header",
+      "content": "Product card"
+    },
+    {
+      "type": "range",
+      "id": "card_corner_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_gap",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile card gap",
+      "default": 8
     },
     {
       "type": "header",
