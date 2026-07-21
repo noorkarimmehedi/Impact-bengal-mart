@@ -1,110 +1,475 @@
 {%- render 'section-spacing-collapsing' -%}
 
-{%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-CSS
-------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
-
 <style>
-  #shopify-section-{{ section.id }} .product-list {
-    --product-list-gap: {% if section.settings.stack_products %}{% if section.settings.products_per_row_mobile == '1' %}var(--grid-gutter){% else %}var(--product-list-row-gap){% endif %} var(--spacing-2){% else %}var(--product-list-row-gap) var(--product-list-column-gap){% endif %};
-    --product-list-items-per-row: {{ section.settings.products_per_row_mobile | times: 1 }};
-    --product-list-carousel-item-width: 74vw;
-    --product-list-grid: {% if section.settings.stack_products %}auto / repeat(var(--product-list-items-per-row), minmax(0, 1fr)){% else %}auto / auto-flow var(--product-list-carousel-item-width){% endif %};
+  #shopify-section-{{ section.id }} {
+    --related-bg: {{ section.settings.background | default: settings.background | default: '#ffffff' }};
+    --related-card-bg: {{ section.settings.product_card_background | default: '#ffffff' }};
+    --related-text: {{ section.settings.text_color | default: settings.text_color | default: '#1a1a1a' }};
+    --related-accent: {{ section.settings.accent_color | default: '#7900FD' }};
+    --related-border: #e8e8e8;
+    --related-radius: {{ section.settings.card_corner_radius | default: 12 }}px;
+    --related-heading-font: {{ section.settings.heading_font.family }}, {{ section.settings.heading_font.fallback_families }};
+    --related-heading-weight: {{ section.settings.heading_font.weight }};
+    --related-heading-style: {{ section.settings.heading_font.style }};
+    --related-mobile-gap: {{ section.settings.mobile_card_gap | default: 8 }}px;
   }
 
-  @media screen and (min-width: 700px) {
-    #shopify-section-{{ section.id }} .product-list {
-      --product-list-gap: var(--product-list-row-gap) var(--product-list-column-gap);
-      --product-list-items-per-row: 2;
-      --product-list-carousel-item-width: 36vw;
+  #shopify-section-{{ section.id }} .related-products {
+    padding: 40px 16px;
+    background: var(--related-bg);
+  }
+
+  @media (max-width: 749px) {
+    #shopify-section-{{ section.id }} .related-products {
+      padding: 40px 16px;
     }
   }
 
-  @media screen and (min-width: 1000px) {
-    #shopify-section-{{ section.id }} .product-list {
-      --product-list-items-per-row: {{ section.settings.products_per_row_desktop }};
-      --product-list-carousel-item-width: calc(var(--container-inner-width) / {{ section.settings.products_per_row_desktop }} - (var(--product-list-column-gap) / {{ section.settings.products_per_row_desktop }} * {{ section.settings.products_per_row_desktop | minus: 1 }}));
+  .related-products__header {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+
+  .related-products__title {
+    font-size: 32px;
+    font-family: var(--related-heading-font);
+    font-weight: var(--related-heading-weight);
+    font-style: var(--related-heading-style);
+    line-height: 1.2;
+    color: var(--related-text);
+    margin: 0;
+    letter-spacing: -0.02em;
+  }
+
+  .related-products__carousel-wrap {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .related-products__track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding: 4px 0 8px;
+  }
+
+  @media (max-width: 699px) {
+    .related-products__track {
+      gap: var(--related-mobile-gap);
+    }
+  }
+
+  .related-products__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  .related-products__slide {
+    flex: 0 0 calc(25% - 15px);
+    min-width: 0;
+    scroll-snap-align: start;
+  }
+
+  @media (max-width: 999px) {
+    .related-products__slide {
+      flex: 0 0 calc(50% - 10px);
+    }
+    .related-products__title {
+      font-size: 22px;
+    }
+  }
+
+  @media (max-width: 699px) {
+    .related-products__slide {
+      flex: 0 0 calc(50% - var(--related-mobile-gap) / 2);
+    }
+  }
+
+  .related-products__card {
+    background: var(--related-card-bg);
+    border: 1px solid var(--related-border);
+    border-radius: var(--related-radius);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  .related-products__image-wrap {
+    position: relative;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+  }
+
+  .related-products__image-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+
+  .related-products__badge {
+    position: absolute;
+    top: -8px;
+    right: -8px;
+    background: #b64236;
+    color: #fff;
+    font-size: 13px;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    padding: 10px 18px;
+    border-radius: 10px;
+    line-height: 1;
+  }
+
+  .related-products__body {
+    padding: 0 20px 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    gap: 10px;
+  }
+
+  .related-products__rating {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .related-products__rating-stars {
+    display: flex;
+    gap: 2px;
+    color: #1a1a1a;
+  }
+
+  .related-products__rating-stars svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .related-products__rating-stars .star-filled {
+    fill: currentColor;
+    color: inherit;
+  }
+
+  .related-products__rating-stars .star-empty {
+    fill: none;
+    color: #ddd;
+    stroke: #ddd;
+    stroke-width: 1.5;
+  }
+
+  .related-products__product-title {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.25;
+    color: var(--related-text);
+    margin: 0;
+    letter-spacing: -0.01em;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .related-products__product-title a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .related-products__prices {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin: 0;
+  }
+
+  .related-products__price {
+    font-size: 16px;
+    font-weight: 400;
+    color: var(--related-text);
+  }
+
+  .related-products__compare-price {
+    font-size: 15px;
+    color: #a0a0a0;
+    text-decoration: line-through;
+  }
+
+  .related-products__buy-btn {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    margin-top: auto;
+    border: 1.5px solid var(--related-text);
+    border-radius: 999px;
+    background: transparent;
+    color: var(--related-text);
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    cursor: pointer;
+    text-decoration: none;
+    font-family: inherit;
+  }
+
+  .related-products__buy-btn--sold-out {
+    opacity: 0.5;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  .related-products__nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 28px;
+    padding-top: 20px;
+  }
+
+  .related-products__nav-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid var(--related-border);
+    border-radius: 50%;
+    background: var(--related-card-bg);
+    cursor: pointer;
+    transition: all 0.2s ease;
+    color: var(--related-text);
+  }
+
+  .related-products__nav-btn:disabled {
+    opacity: 0.3;
+    cursor: default;
+    pointer-events: none;
+  }
+
+  .related-products__nav-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .related-products__pagination {
+    font-size: 14px;
+    font-weight: 500;
+    color: #888;
+    min-width: 48px;
+    text-align: center;
+    letter-spacing: 0.3px;
+  }
+
+  @media (max-width: 699px) {
+    .related-products__nav-btn {
+      width: 36px;
+      height: 36px;
+    }
+    .related-products__nav-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+    .related-products__product-title {
+      font-size: 14px;
+    }
+    .related-products__price {
+      font-size: 14px;
+    }
+    .related-products__buy-btn {
+      font-size: 12px;
+      padding: 8px 12px;
     }
   }
 </style>
 
-{%- comment -%}
-------------------------------------------------------------------------------------------------------------------------
-LIQUID
-------------------------------------------------------------------------------------------------------------------------
-{%- endcomment -%}
+{%- assign products = section.settings.products -%}
+{%- assign product_count = products | length -%}
 
-<div {% render 'section-properties' %}>
-  <div class="section-stack">
-    {%- render 'section-header', subheading: section.settings.subheading, heading: section.settings.title, heading_color: section.settings.heading_color, heading_gradient: section.settings.heading_gradient, content: section.settings.content -%}
-
-    <div class="{% if section.settings.show_progress_bar %}scrollable-with-controls{% else %}floating-controls-container{% endif %}">
-      {%- assign scroll_area_id = 'scroll-area-' | append: section.id -%}
-
-      {%- if section.settings.products.count > 0 -%}
-        <scroll-carousel selector="product-card" id="{{ scroll_area_id }}" class="scroll-area bleed {% if section.settings.products.count > section.settings.products_per_row_desktop %}is-scrollable{% endif %}">
-          <reveal-items selector=".product-list > *">
-            <product-list class="product-list">
-              {%- for product in section.settings.products -%}
-                {%- render 'product-card', product: product, stacked: section.settings.stack_products, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color, show_badges: true -%}
-              {%- endfor -%}
-            </product-list>
-          </reveal-items>
-        </scroll-carousel>
-
-        {%- if section.settings.stack_products == false -%}
-          {%- if section.settings.show_progress_bar -%}
-            {%- assign default_progress = section.settings.products_per_row_desktop | times: 1.0 | divided_by: section.settings.products.count -%}
-            {%- render 'scrollbar', observes: scroll_area_id, default_progress: default_progress, show_buttons: true -%}
-          {%- else -%}
-            <button is="prev-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}" disabled>
-              <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-              <span class="animated-arrow animated-arrow--reverse"></span>
-            </button>
-
-            <button is="next-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}">
-              <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-              <span class="animated-arrow"></span>
-            </button>
-          {%- endif -%}
-        {%- endif -%}
-      {%- else -%}
-        <product-recommendations product="{{ product.id }}" limit="{{ section.settings.recommendations_count }}" intent="related" class="contents">
-          {%- if recommendations.performed and recommendations.products_count > 0 -%}
-            <scroll-carousel selector="product-card" id="{{ scroll_area_id }}" class="scroll-area bleed {% if section.settings.recommendations_count > section.settings.products_per_row_desktop %}is-scrollable{% endif %}">
-              <reveal-items selector=".product-list > *">
-                <product-list class="product-list">
-                  {%- for product in recommendations.products -%}
-                    {%- render 'product-card', product: product, stacked: section.settings.stack_products, background: section.settings.product_card_background, text_color: section.settings.product_card_text_color, show_badges: true -%}
-                  {%- endfor -%}
-                </product-list>
-              </reveal-items>
-            </scroll-carousel>
-
-            {%- if section.settings.stack_products == false -%}
-              {%- if section.settings.show_progress_bar -%}
-                {%- assign default_progress = section.settings.products_per_row_desktop | times: 1.0 | divided_by: section.settings.recommendations_count -%}
-                {%- render 'scrollbar', observes: scroll_area_id, default_progress: default_progress, show_buttons: true -%}
-              {%- else -%}
-                <button is="prev-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}" disabled>
-                  <span class="sr-only">{{ 'general.accessibility.previous' | t }}</span>
-                  <span class="animated-arrow animated-arrow--reverse"></span>
-                </button>
-
-                <button is="next-button" class="circle-button circle-button--lg circle-button--fill border group" aria-controls="{{ scroll_area_id }}">
-                  <span class="sr-only">{{ 'general.accessibility.next' | t }}</span>
-                  <span class="animated-arrow"></span>
-                </button>
-              {%- endif -%}
-            {%- endif -%}
-          {%- endif -%}
-        </product-recommendations>
-      {%- endif -%}
+<div class="related-products">
+  <div class="{% if section.settings.full_width %}page-width{% else %}container{% endif %}">
+    <div class="related-products__header">
+      <h2 class="related-products__title">{{ section.settings.title | default: 'You may also like' }}</h2>
     </div>
+
+    <div class="related-products__carousel-wrap">
+      <div class="related-products__track" id="related-products-track-{{ section.id }}">
+        {%- if product_count > 0 -%}
+          {%- for product in products limit: section.settings.products_count -%}
+            {%- assign variant = product.selected_or_first_available_variant -%}
+            {%- assign is_on_sale = false -%}
+            {%- if variant.compare_at_price > variant.price -%}
+              {%- assign is_on_sale = true -%}
+            {%- endif -%}
+
+            <div class="related-products__slide">
+              <div class="related-products__card">
+                <div class="related-products__image-wrap">
+                  <a href="{{ product.url }}" data-instant>
+                    {%- if product.featured_media -%}
+                      {{ product.featured_media | image_url: width: 600 | image_tag: loading: 'lazy', widths: '200,300,400,500,600' }}
+                    {%- else -%}
+                      {{ 'product-1' | placeholder_svg_tag: 'placeholder-svg' }}
+                    {%- endif -%}
+                  </a>
+                  {%- if is_on_sale -%}
+                    <span class="related-products__badge">ON SALE</span>
+                  {%- endif -%}
+                </div>
+
+                <div class="related-products__body">
+                  <div class="related-products__prices">
+                    {%- assign price_prefix = '' -%}
+                    {%- if product.price_varies -%}
+                      {%- assign price_prefix = 'From ' -%}
+                    {%- endif -%}
+                    <span class="related-products__price">
+                      {{ price_prefix }}৳{{ variant.price | money_without_currency }}
+                    </span>
+                    {%- if is_on_sale -%}
+                      <span class="related-products__compare-price">
+                        ৳{{ variant.compare_at_price | money_without_currency }}
+                      </span>
+                    {%- endif -%}
+                  </div>
+
+                  <h3 class="related-products__product-title">
+                    <a href="{{ product.url }}" data-instant>{{ product.title }}</a>
+                  </h3>
+
+                  {%- if product.available -%}
+                    {%- if product.variants.size == 1 -%}
+                      {%- form 'product', product, is: 'product-form' -%}
+                        <input type="hidden" name="id" value="{{ variant.id }}">
+                        <button type="submit" class="related-products__buy-btn">Buy Now</button>
+                      {%- endform -%}
+                    {%- else -%}
+                      <a href="{{ product.url }}" class="related-products__buy-btn" style="text-decoration:none;">Buy Now</a>
+                    {%- endif -%}
+                  {%- else -%}
+                    <button class="related-products__buy-btn related-products__buy-btn--sold-out" disabled>Sold Out</button>
+                  {%- endif -%}
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- else -%}
+          {%- for i in (1..section.settings.products_count) -%}
+            {%- capture placeholder_image -%}product-{% cycle '1', '2', '3', '4', '5', '6' %}{%- endcapture -%}
+            <div class="related-products__slide">
+              <div class="related-products__card">
+                <div class="related-products__image-wrap">
+                  {{ placeholder_image | placeholder_svg_tag: 'placeholder-svg' }}
+                </div>
+                <div class="related-products__body">
+                  <div class="related-products__prices">
+                    <span class="related-products__price">৳99</span>
+                    <span class="related-products__compare-price">৳149</span>
+                  </div>
+                  <h3 class="related-products__product-title">{{ 'product.title' | t | default: 'Product Title' }}</h3>
+                  <button class="related-products__buy-btn">Buy Now</button>
+                </div>
+              </div>
+            </div>
+          {%- endfor -%}
+        {%- endif -%}
+      </div>
+    </div>
+
+    <nav class="related-products__nav">
+      <button class="related-products__nav-btn" id="related-products-prev-{{ section.id }}" aria-label="Previous">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="12 5 7 10 12 15"/>
+        </svg>
+      </button>
+      <span class="related-products__pagination" id="related-products-page-{{ section.id }}">1 / 1</span>
+      <button class="related-products__nav-btn" id="related-products-next-{{ section.id }}" aria-label="Next">
+        <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="8 5 13 10 8 15"/>
+        </svg>
+      </button>
+    </nav>
   </div>
 </div>
+
+<script>
+  (function() {
+    const track = document.getElementById('related-products-track-{{ section.id }}');
+    const prevBtn = document.getElementById('related-products-prev-{{ section.id }}');
+    const nextBtn = document.getElementById('related-products-next-{{ section.id }}');
+    const pageEl = document.getElementById('related-products-page-{{ section.id }}');
+
+    if (!track || !prevBtn || !nextBtn || !pageEl) return;
+
+    const slides = track.children;
+    const totalSlides = slides.length;
+
+    function getVisibleCount() {
+      if (window.innerWidth <= 999) return 2;
+      return {{ section.settings.products_per_row_desktop | default: 4 }};
+    }
+
+    function updatePagination() {
+      const visible = getVisibleCount();
+      const pages = Math.ceil(totalSlides / visible);
+      const scrollLeft = track.scrollLeft;
+      const slideWidth = slides[0]?.offsetWidth + 20 || 0;
+      const currentPage = Math.min(Math.floor(scrollLeft / (slideWidth * visible)) + 1, pages);
+      pageEl.textContent = currentPage + ' / ' + pages;
+
+      prevBtn.disabled = currentPage <= 1;
+      nextBtn.disabled = currentPage >= pages;
+    }
+
+    function scrollToPage(page) {
+      const visible = getVisibleCount();
+      const slideWidth = slides[0]?.offsetWidth + 20 || 0;
+      const target = (page - 1) * slideWidth * visible;
+      track.scrollTo({ left: target, behavior: 'smooth' });
+    }
+
+    prevBtn.addEventListener('click', function() {
+      const visible = getVisibleCount();
+      const pages = Math.ceil(totalSlides / visible);
+      const scrollLeft = track.scrollLeft;
+      const slideWidth = slides[0]?.offsetWidth + 20 || 0;
+      const currentPage = Math.min(Math.floor(scrollLeft / (slideWidth * visible)) + 1, pages);
+      if (currentPage > 1) scrollToPage(currentPage - 1);
+    });
+
+    nextBtn.addEventListener('click', function() {
+      const visible = getVisibleCount();
+      const pages = Math.ceil(totalSlides / visible);
+      const scrollLeft = track.scrollLeft;
+      const slideWidth = slides[0]?.offsetWidth + 20 || 0;
+      const currentPage = Math.min(Math.floor(scrollLeft / (slideWidth * visible)) + 1, pages);
+      if (currentPage < pages) scrollToPage(currentPage + 1);
+    });
+
+    let ticking = false;
+    track.addEventListener('scroll', function() {
+      if (!ticking) {
+        window.requestAnimationFrame(function() {
+          updatePagination();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    });
+
+    window.addEventListener('resize', updatePagination);
+    updatePagination();
+  })();
+</script>
 
 {% schema %}
 {
@@ -115,18 +480,6 @@ LIQUID
     "templates": ["product"]
   },
   "settings": [
-    {
-      "type": "paragraph",
-      "content": "Dynamic recommendations change and improve with time. Create manual product recommendations using the Shopify Search & Discovery app. [Learn more](https://help.shopify.com/en/manual/online-store/search-and-discovery/product-recommendations)."
-    },
-    {
-      "type": "range",
-      "id": "recommendations_count",
-      "min": 2,
-      "max": 10,
-      "label": "Dynamic recommendations count",
-      "default": 6
-    },
     {
       "type": "product_list",
       "id": "products",
@@ -141,32 +494,12 @@ LIQUID
       "default": true
     },
     {
-      "type": "checkbox",
-      "id": "stack_products",
-      "label": "Stack products",
-      "default": true
-    },
-    {
-      "type": "checkbox",
-      "id": "show_progress_bar",
-      "label": "Show carousel progress bar",
-      "default": false
-    },
-    {
-      "type": "select",
-      "id": "products_per_row_mobile",
-      "label": "Products per row (mobile)",
-      "options": [
-        {
-          "value": "1",
-          "label": "1"
-        },
-        {
-          "value": "2",
-          "label": "2"
-        }
-      ],
-      "default": "1"
+      "type": "range",
+      "id": "products_count",
+      "min": 2,
+      "max": 50,
+      "label": "Products to show",
+      "default": 8
     },
     {
       "type": "range",
@@ -174,12 +507,7 @@ LIQUID
       "min": 2,
       "max": 5,
       "label": "Products per row (desktop)",
-      "default": 3
-    },
-    {
-      "type": "text",
-      "id": "subheading",
-      "label": "Subheading"
+      "default": 4
     },
     {
       "type": "text",
@@ -188,14 +516,42 @@ LIQUID
       "default": "You may also like"
     },
     {
-      "type": "richtext",
-      "id": "content",
-      "label": "Content"
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "helvetica_n7"
     },
     {
       "type": "header",
-      "content": "Colors",
-      "info": "Gradient replaces solid colors when set."
+      "content": "Product card"
+    },
+    {
+      "type": "range",
+      "id": "card_corner_radius",
+      "min": 0,
+      "max": 32,
+      "step": 2,
+      "unit": "px",
+      "label": "Card corner radius",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "mobile_card_gap",
+      "min": 4,
+      "max": 24,
+      "step": 2,
+      "unit": "px",
+      "label": "Mobile card gap",
+      "default": 8
+    },
+    {
+      "type": "header",
+      "content": "Colors"
     },
     {
       "type": "color",
@@ -214,23 +570,13 @@ LIQUID
     },
     {
       "type": "color",
-      "id": "heading_color",
-      "label": "Heading color"
-    },
-    {
-      "type": "color_background",
-      "id": "heading_gradient",
-      "label": "Heading gradient"
+      "id": "accent_color",
+      "label": "Accent (button hover)"
     },
     {
       "type": "color",
       "id": "product_card_background",
       "label": "Product card background"
-    },
-    {
-      "type": "color",
-      "id": "product_card_text_color",
-      "label": "Product card text"
     }
   ],
   "presets": [
