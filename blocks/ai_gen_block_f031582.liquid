@@ -3,6 +3,10 @@
     generate me a hero section where the texts and bottom texts should be in the bottom and should be customizable. both should be in the bottom in the bottm and should be bottom left on desktop version , should be option for two buttons , button should be in two row one below another one. also the heading and subheading alligment , the image size should adapt the actual image size also i need option for desktop image upload, should be option for image size for mobile version. also i need button a slight more on both left and right side on mobile version , in desktop buttons should be side by side
 {% enddoc %}
 {% assign ai_gen_id = block.id | replace: '_', '' | downcase %}
+{%- assign heading_font = block.settings.heading_font -%}
+{%- if heading_font.family != 'system' and heading_font.family != blank -%}
+  {{ heading_font | font_face: font_display: 'swap' }}
+{%- endif -%}
 
 {% style %}
   .ai-hero-section-{{ ai_gen_id }} {
@@ -67,8 +71,10 @@
     justify-content: flex-end;
     align-items: flex-start;
     min-height: {{ block.settings.height_mobile }}px;
-    padding: {{ block.settings.padding_mobile }}px;
+    padding-top: {{ block.settings.padding_mobile }}px;
     padding-bottom: {% if block.settings.show_dots %}{{ block.settings.padding_mobile | plus: 40 }}{% else %}{{ block.settings.padding_mobile }}{% endif %}px;
+    padding-left: 0;
+    padding-right: 0;
   }
 
   .ai-hero-text-wrapper-{{ ai_gen_id }} {
@@ -77,6 +83,7 @@
   }
 
   .ai-hero-heading-{{ ai_gen_id }} {
+    font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
     color: {{ block.settings.heading_color }};
     font-size: {{ block.settings.heading_size_mobile }}px;
     margin: 0 0 {{ block.settings.text_spacing }}px 0;
@@ -87,6 +94,7 @@
   }
 
   .ai-hero-subheading-{{ ai_gen_id }} {
+    font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
     color: {{ block.settings.subheading_color }};
     font-size: {{ block.settings.subheading_size_mobile }}px;
     margin: 0 0 {{ block.settings.button_spacing }}px 0;
@@ -103,6 +111,7 @@
   }
 
   .ai-hero-button-{{ ai_gen_id }} {
+    font-family: {{ heading_font.family }}, {{ heading_font.fallback_families }};
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -177,8 +186,10 @@
 
     .ai-hero-content-{{ ai_gen_id }} {
       min-height: {{ block.settings.height_desktop }}px;
-      padding: {{ block.settings.padding_desktop }}px;
+      padding-top: {{ block.settings.padding_desktop }}px;
       padding-bottom: {% if block.settings.show_dots %}{{ block.settings.padding_desktop | plus: 30 }}{% else %}{{ block.settings.padding_desktop }}{% endif %}px;
+      padding-left: 0;
+      padding-right: 0;
       align-items: flex-start;
     }
 
@@ -255,6 +266,7 @@
   {% endif %}
 
   <div class="ai-hero-content-{{ ai_gen_id }}">
+    <div class="page-width">
     <div class="ai-hero-text-wrapper-{{ ai_gen_id }}">
       {% if block.settings.heading != blank %}
         <h1 class="ai-hero-heading-{{ ai_gen_id }}">{{ block.settings.heading }}</h1>
@@ -283,6 +295,7 @@
           </a>
         {% endif %}
       </div>
+    </div>
     </div>
   </div>
 
@@ -649,6 +662,16 @@
       "unit": "px",
       "label": "Bottom offset (mobile)",
       "default": 18
+    },
+    {
+      "type": "header",
+      "content": "Typography"
+    },
+    {
+      "type": "font_picker",
+      "id": "heading_font",
+      "label": "Heading font",
+      "default": "sans-serif"
     },
     {
       "type": "header",
