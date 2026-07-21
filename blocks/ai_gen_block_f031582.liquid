@@ -74,7 +74,6 @@
   .ai-hero-text-wrapper-{{ ai_gen_id }} {
     width: 100%;
     max-width: {{ block.settings.content_max_width }}px;
-    text-align: {{ block.settings.text_alignment_mobile }};
   }
 
   .ai-hero-heading-{{ ai_gen_id }} {
@@ -84,6 +83,7 @@
     line-height: 1.1;
     font-weight: 500;
     letter-spacing: -0.02em;
+    text-align: {{ block.settings.heading_align_mobile }};
   }
 
   .ai-hero-subheading-{{ ai_gen_id }} {
@@ -91,13 +91,14 @@
     font-size: {{ block.settings.subheading_size_mobile }}px;
     margin: 0 0 {{ block.settings.button_spacing }}px 0;
     line-height: 1.5;
+    text-align: {{ block.settings.subheading_align_mobile }};
   }
 
   .ai-hero-buttons-{{ ai_gen_id }} {
     display: flex;
     flex-direction: column;
     gap: {{ block.settings.button_gap }}px;
-    align-items: stretch;
+    align-items: {% case block.settings.buttons_align_mobile %}{% when 'left' %}flex-start{% when 'right' %}flex-end{% when 'center' %}center{% else %}stretch{% endcase %};
     width: 100%;
   }
 
@@ -105,14 +106,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: {{ block.settings.button_padding_vertical }}px {{ block.settings.button_padding_horizontal }}px;
-    font-size: {{ block.settings.button_font_size }}px;
+    padding: {{ block.settings.button_padding_vertical_mobile }}px {{ block.settings.button_padding_horizontal_mobile }}px;
+    font-size: {{ block.settings.button_font_size_mobile }}px;
     font-weight: 500;
     text-decoration: none;
     border-radius: {{ block.settings.button_border_radius }}px;
     transition: all 0.3s ease;
     border: 2px solid transparent;
-    width: 100%;
+    width: {% if block.settings.buttons_align_mobile == 'stretch' %}100%{% else %}auto{% endif %};
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
   }
 
@@ -181,27 +182,28 @@
       align-items: flex-start;
     }
 
-    .ai-hero-text-wrapper-{{ ai_gen_id }} {
-      text-align: {{ block.settings.text_alignment_desktop }};
-    }
-
     .ai-hero-heading-{{ ai_gen_id }} {
       font-size: {{ block.settings.heading_size_desktop }}px;
+      text-align: {{ block.settings.heading_align_desktop }};
     }
 
     .ai-hero-subheading-{{ ai_gen_id }} {
       font-size: {{ block.settings.subheading_size_desktop }}px;
+      text-align: {{ block.settings.subheading_align_desktop }};
     }
 
     .ai-hero-buttons-{{ ai_gen_id }} {
       flex-direction: row;
       align-items: center;
-      width: auto;
+      justify-content: {% case block.settings.buttons_align_desktop %}{% when 'left' %}flex-start{% when 'right' %}flex-end{% else %}center{% endcase %};
+      width: 100%;
     }
 
     .ai-hero-button-{{ ai_gen_id }} {
       width: auto;
-      min-width: 200px;
+      min-width: 0;
+      padding: {{ block.settings.button_padding_vertical_desktop }}px {{ block.settings.button_padding_horizontal_desktop }}px;
+      font-size: {{ block.settings.button_font_size_desktop }}px;
     }
 
     .ai-hero-image-desktop-{{ ai_gen_id }} {
@@ -476,36 +478,6 @@
     },
     {
       "type": "range",
-      "id": "button_font_size",
-      "min": 12,
-      "max": 24,
-      "step": 1,
-      "unit": "px",
-      "label": "Font size",
-      "default": 16
-    },
-    {
-      "type": "range",
-      "id": "button_padding_vertical",
-      "min": 8,
-      "max": 40,
-      "step": 2,
-      "unit": "px",
-      "label": "Vertical padding",
-      "default": 22
-    },
-    {
-      "type": "range",
-      "id": "button_padding_horizontal",
-      "min": 15,
-      "max": 80,
-      "step": 5,
-      "unit": "px",
-      "label": "Horizontal padding",
-      "default": 45
-    },
-    {
-      "type": "range",
       "id": "button_border_radius",
       "min": 0,
       "max": 60,
@@ -523,6 +495,74 @@
       "unit": "px",
       "label": "Gap between buttons",
       "default": 15
+    },
+    {
+      "type": "header",
+      "content": "Button size (desktop)"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_desktop",
+      "min": 10,
+      "max": 24,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 15
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical_desktop",
+      "min": 6,
+      "max": 40,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 16
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal_desktop",
+      "min": 10,
+      "max": 80,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 32
+    },
+    {
+      "type": "header",
+      "content": "Button size (mobile)"
+    },
+    {
+      "type": "range",
+      "id": "button_font_size_mobile",
+      "min": 10,
+      "max": 22,
+      "step": 1,
+      "unit": "px",
+      "label": "Font size",
+      "default": 14
+    },
+    {
+      "type": "range",
+      "id": "button_padding_vertical_mobile",
+      "min": 6,
+      "max": 30,
+      "step": 1,
+      "unit": "px",
+      "label": "Vertical padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "button_padding_horizontal_mobile",
+      "min": 10,
+      "max": 60,
+      "step": 1,
+      "unit": "px",
+      "label": "Horizontal padding",
+      "default": 24
     },
     {
       "type": "header",
@@ -676,21 +716,34 @@
     },
     {
       "type": "select",
-      "id": "text_alignment_desktop",
-      "label": "Text alignment",
+      "id": "heading_align_desktop",
+      "label": "Heading alignment",
       "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "subheading_align_desktop",
+      "label": "Subheading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "buttons_align_desktop",
+      "label": "Buttons alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "left"
     },
@@ -760,23 +813,37 @@
     },
     {
       "type": "select",
-      "id": "text_alignment_mobile",
-      "label": "Text alignment",
+      "id": "heading_align_mobile",
+      "label": "Heading alignment",
       "options": [
-        {
-          "value": "left",
-          "label": "Left"
-        },
-        {
-          "value": "center",
-          "label": "Center"
-        },
-        {
-          "value": "right",
-          "label": "Right"
-        }
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
       ],
       "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "subheading_align_mobile",
+      "label": "Subheading alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" }
+      ],
+      "default": "left"
+    },
+    {
+      "type": "select",
+      "id": "buttons_align_mobile",
+      "label": "Buttons alignment",
+      "options": [
+        { "value": "left", "label": "Left" },
+        { "value": "center", "label": "Center" },
+        { "value": "right", "label": "Right" },
+        { "value": "stretch", "label": "Full width" }
+      ],
+      "default": "stretch"
     }
   ],
   "presets": [
