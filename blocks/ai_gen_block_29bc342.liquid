@@ -69,8 +69,13 @@
     color: inherit;
     background-color: {{ block.settings.card_background }};
     border: 1px solid {{ block.settings.card_border_color }};
-    border-radius: {{ block.settings.card_border_radius }}px;
-    padding: 24px 16px;
+    {% if block.settings.card_shape == 'circle' %}
+      border-radius: 50%;
+      padding: 12px;
+    {% else %}
+      border-radius: {{ block.settings.card_border_radius }}px;
+      padding: 24px 16px;
+    {% endif %}
     transition: border-color 0.2s ease, box-shadow 0.2s ease;
   }
 
@@ -80,12 +85,20 @@
   }
 
   .ai-category-slider-image-wrapper-{{ ai_gen_id }} {
-    width: 100%;
-    aspect-ratio: 1;
+    width: {{ block.settings.card_size }}px;
+    height: {{ block.settings.card_size }}px;
+    max-width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
     margin-bottom: {{ block.settings.text_spacing }}px;
+    {% if block.settings.card_shape == 'circle' %}
+      border-radius: 50%;
+    {% else %}
+      border-radius: {{ block.settings.card_border_radius }}px;
+    {% endif %}
+    overflow: hidden;
+    background-color: {{ block.settings.card_background }};
   }
 
   .ai-category-slider-image-{{ ai_gen_id }} {
@@ -437,6 +450,26 @@
     {
       "type": "header",
       "content": "Cards"
+    },
+    {
+      "type": "select",
+      "id": "card_shape",
+      "label": "Card shape",
+      "options": [
+        { "value": "circle", "label": "Circle" },
+        { "value": "square", "label": "Square" }
+      ],
+      "default": "square"
+    },
+    {
+      "type": "range",
+      "id": "card_size",
+      "min": 80,
+      "max": 240,
+      "step": 4,
+      "unit": "px",
+      "label": "Card size",
+      "default": 140
     },
     {
       "type": "range",
