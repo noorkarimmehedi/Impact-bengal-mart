@@ -119,7 +119,7 @@
             "dots_border_color": "#00000026",
             "dots_bottom_offset_desktop": 24,
             "dots_bottom_offset_mobile": 18,
-            "heading_font": "system_ui_n4",
+            "heading_font": "'Assistant', sans-serif",
             "height_desktop": 600,
             "image_fit_desktop": "cover",
             "heading_size_desktop": 42,
