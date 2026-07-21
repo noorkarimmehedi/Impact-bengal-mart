@@ -2,11 +2,13 @@
 
 {% style %}
   .ai-category-slider-{{ ai_gen_id }} {
+    display: block;
     padding-top: {{ block.settings.padding_top }}px;
     padding-bottom: {{ block.settings.padding_bottom }}px;
     padding-left: 16px;
     padding-right: 16px;
     background-color: {{ block.settings.background_color }};
+    box-sizing: border-box;
   }
 
   .ai-category-slider-container-{{ ai_gen_id }} {
