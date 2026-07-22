@@ -36,45 +36,46 @@
   .kitchen-counter-{{ unique_id }} {
     background: #FAFAFA;
     border: 1px solid #E5E7EB;
-    border-radius: 6px;
-    padding: 6px 8px;
-    margin: 8px 0;
+    border-radius: 8px;
+    padding: 12px 16px;
+    margin: 12px 0;
     position: relative;
     overflow: hidden;
     font-family: inherit;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   }
 
   .kitchen-counter__top-{{ unique_id }} {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    margin-bottom: 5px;
-    font-size: 11px;
+    margin-bottom: 10px;
+    font-size: 13px;
   }
 
   .kitchen-counter__left-{{ unique_id }} {
     display: flex;
     align-items: center;
-    gap: 6px;
+    gap: 12px;
   }
 
   .kitchen-counter__live-badge-{{ unique_id }} {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 5px;
     background: #321B13;
     color: white;
-    padding: 2px 5px;
-    border-radius: 4px;
-    font-size: 9px;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 11px;
     font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.3px;
+    letter-spacing: 0.5px;
   }
 
   .kitchen-counter__live-dot-{{ unique_id }} {
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
     background: white;
     border-radius: 50%;
     animation: live-pulse-{{ unique_id }} 2s ease-in-out infinite;
@@ -88,15 +89,15 @@
   .kitchen-counter__viewers-text-{{ unique_id }} {
     display: flex;
     align-items: center;
-    gap: 4px;
+    gap: 6px;
     color: #4B5563;
     font-weight: 500;
     margin: 0;
   }
 
   .kitchen-counter__eye-icon-{{ unique_id }} {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     fill: #4B5563;
   }
 
@@ -104,41 +105,43 @@
     font-weight: 700;
     color: #321B13;
     display: inline-block;
-    min-width: 20px;
+    min-width: 24px;
     text-align: center;
+    font-size: 14px;
   }
 
   .kitchen-counter__stock-count-{{ unique_id }} {
     display: flex;
     align-items: center;
-    gap: 3px;
+    gap: 6px;
     color: #321B13;
     font-weight: 700;
   }
 
   .kitchen-counter__stock-icon-{{ unique_id }} {
-    width: 12px;
-    height: 12px;
+    width: 16px;
+    height: 16px;
     fill: #321B13;
   }
   
   .kitchen-counter__stock-number-{{ unique_id }} {
     display: inline-block;
-    min-width: 16px;
+    min-width: 20px;
     text-align: center;
+    font-size: 14px;
   }
 
   .kitchen-counter__progress-bar-{{ unique_id }} {
-    height: 4px;
-    background: #F3F4F6;
-    border-radius: 2px;
+    height: 6px;
+    background: #E5E7EB;
+    border-radius: 3px;
     overflow: hidden;
   }
 
   .kitchen-counter__progress-fill-{{ unique_id }} {
     height: 100%;
     background: #321B13;
-    border-radius: 2px;
+    border-radius: 3px;
     transition: width 0.5s ease-out;
   }
 
@@ -148,9 +151,18 @@
 
   @keyframes update-pop-{{ unique_id }} {
     0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.2); }
+    50% { transform: scale(1.15); }
   }
   
+  /* Responsive Design */
+  @media screen and (max-width: 480px) {
+    .kitchen-counter__top-{{ unique_id }} {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+
   /* Reduce animations on mobile devices */
   @media (prefers-reduced-motion: reduce) {
     .kitchen-counter__live-dot-{{ unique_id }},
