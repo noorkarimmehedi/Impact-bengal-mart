@@ -269,7 +269,7 @@
             "card_size": 116,
             "items_per_view_desktop": 4,
             "items_per_view_mobile": 2,
-            "gap": 14,
+            "gap": 8,
             "card_background": "#ffffff",
             "card_border_color": "#e5e5e5",
             "hover_border_color": "#cccccc",
