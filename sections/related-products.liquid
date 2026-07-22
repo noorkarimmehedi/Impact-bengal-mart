@@ -303,7 +303,7 @@
 
     <div class="related-products__carousel-wrap">
       <div class="related-products__track" id="related-products-track-{{ section.id }}">
-        {%- if product_count > 0 -%}
+        {%- if products != blank -%}
           {%- for product in products limit: section.settings.products_count -%}
             {%- assign variant = product.selected_or_first_available_variant -%}
             {%- assign is_on_sale = false -%}
