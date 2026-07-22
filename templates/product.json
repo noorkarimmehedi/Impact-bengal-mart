@@ -205,7 +205,7 @@
         "products_count": 8,
         "products_per_row_desktop": 3,
         "title": "You may also like",
-        "heading_font": "sans_serif_n7",
+        "heading_font": "system_ui_n4",
         "card_corner_radius": 6,
         "mobile_card_gap": 8,
         "background": "",
