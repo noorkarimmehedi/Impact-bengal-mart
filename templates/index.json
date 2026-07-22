@@ -655,6 +655,107 @@
         "drag_cursor_color": "#000000"
       }
     },
+    "featured_product_YWdnnt": {
+      "type": "featured-product",
+      "blocks": {
+        "vendor_8xyxLz": {
+          "type": "vendor",
+          "settings": {}
+        },
+        "title_dCt76h": {
+          "type": "title",
+          "settings": {
+            "heading_tag": "h2"
+          }
+        },
+        "badges_hQbmUm": {
+          "type": "badges",
+          "settings": {}
+        },
+        "price_BebCXh": {
+          "type": "price",
+          "settings": {
+            "show_taxes_notice": false
+          }
+        },
+        "rating_YYhd4r": {
+          "type": "rating",
+          "settings": {
+            "show_empty": false
+          }
+        },
+        "separator_E3D6Yn": {
+          "type": "separator",
+          "settings": {}
+        },
+        "description_4MyXbV": {
+          "type": "description",
+          "settings": {
+            "collapse_content": false
+          }
+        },
+        "variant_picker_JKmW3f": {
+          "type": "variant_picker",
+          "settings": {
+            "hide_sold_out_variants": false,
+            "stack_blocks": true,
+            "selector_mode": "block",
+            "color_mode": "color",
+            "size_chart_page": ""
+          }
+        },
+        "quantity_selector_R88Hem": {
+          "type": "quantity_selector",
+          "settings": {}
+        },
+        "buy_buttons_pfdcwy": {
+          "type": "buy_buttons",
+          "settings": {
+            "show_payment_button": true,
+            "show_gift_card_recipient": true,
+            "atc_button_background": "",
+            "atc_button_text_color": "",
+            "payment_button_background": "",
+            "payment_button_text_color": ""
+          }
+        },
+        "pickup_availability_xanaf8": {
+          "type": "pickup_availability",
+          "settings": {}
+        }
+      },
+      "block_order": [
+        "vendor_8xyxLz",
+        "title_dCt76h",
+        "badges_hQbmUm",
+        "price_BebCXh",
+        "rating_YYhd4r",
+        "separator_E3D6Yn",
+        "description_4MyXbV",
+        "variant_picker_JKmW3f",
+        "quantity_selector_R88Hem",
+        "buy_buttons_pfdcwy",
+        "pickup_availability_xanaf8"
+      ],
+      "name": "Featured product",
+      "settings": {
+        "full_width": true,
+        "product": "wall-mounted-organizers-and-storage",
+        "desktop_media_width": 55,
+        "desktop_media_layout": "carousel_thumbnails_left",
+        "mobile_media_size": "expanded",
+        "mobile_carousel_control": "floating_dots",
+        "enable_video_autoplay": true,
+        "enable_video_looping": false,
+        "enable_image_zoom": true,
+        "max_image_zoom_level": 3,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "input_background": "rgba(0,0,0,0)",
+        "input_text_color": ""
+      }
+    },
     "press": {
       "type": "press",
       "blocks": {
@@ -683,6 +784,7 @@
         "16644243327ba53d2a-1",
         "16644243327ba53d2a-0"
       ],
+      "disabled": true,
       "settings": {
         "full_width": true,
         "content_size": "medium",
@@ -1083,6 +1185,7 @@
     "image-with-text-overlay",
     "media-grid",
     "before-after-image",
+    "featured_product_YWdnnt",
     "press",
     "hot-spots",
     "multiple-images-with-text",
