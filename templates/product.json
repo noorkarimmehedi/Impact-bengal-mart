@@ -200,7 +200,10 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "products": [],
+        "products": [
+          "2-in-1-oil-dispenser-bottle",
+          "wall-mounted-organizers-and-storage"
+        ],
         "full_width": true,
         "products_count": 8,
         "products_per_row_desktop": 3,
