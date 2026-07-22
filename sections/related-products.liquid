@@ -292,8 +292,7 @@
   }
 </style>
 
-{%- assign products = section.settings.products -%}
-{%- assign product_count = products | length -%}
+{%- assign manual_products = section.settings.products -%}
 
 <div class="related-products">
   <div class="{% if section.settings.full_width %}page-width{% else %}container{% endif %}">
@@ -303,8 +302,8 @@
 
     <div class="related-products__carousel-wrap">
       <div class="related-products__track" id="related-products-track-{{ section.id }}">
-        {%- if product_count > 0 -%}
-          {%- for product in products limit: section.settings.products_count -%}
+        {%- if manual_products != blank and manual_products.count > 0 -%}
+          {%- for product in manual_products limit: section.settings.products_count -%}
             {%- assign variant = product.selected_or_first_available_variant -%}
             {%- assign is_on_sale = false -%}
             {%- if variant.compare_at_price > variant.price -%}
