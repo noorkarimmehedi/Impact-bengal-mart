@@ -8406,7 +8406,8 @@ split-lines {
   letter-spacing: var(--text-letter-spacing) !important;
   text-decoration: none !important;
   transition: background-color .15s ease-in-out, color .15s ease-in-out, box-shadow .15s ease-in-out !important;
-  display: inline-block !important;
+  display: block !important;
+  width: 100% !important;
   position: relative !important;
   box-shadow: inset 0 0 0 2px #0000 !important;
 }
@@ -10044,22 +10045,4 @@ split-lines {
 .price-list--lg compare-at-price {
   font-size: 11px;
   padding: 1px 4px;
-}
-
-/* Fix Buy it now button height and width to match Add to cart */
-.buy-buttons .shopify-payment-button__button--unbranded,
-.buy-buttons .shopify-payment-button__button--branded {
-  width: 100% !important;
-  display: block !important;
-  min-height: 100% !important;
-  padding-block-start: var(--spacing-4) !important;
-  padding-block-end: var(--spacing-4) !important;
-}
-
-@media screen and (min-width: 700px) {
-  .buy-buttons .shopify-payment-button__button--unbranded,
-  .buy-buttons .shopify-payment-button__button--branded {
-    padding-block-start: 1.075rem !important;
-    padding-block-end: 1.075rem !important;
-  }
 }
