@@ -303,12 +303,12 @@
     "featured-collection": {
       "type": "featured-collection",
       "settings": {
-        "collection": "best-sellers",
+        "collection": "all-products",
         "products": [],
         "full_width": true,
         "products_count": 50,
         "products_per_row_desktop": 4,
-        "title": "BEST SELLERS",
+        "title": "ALL PRODUCTS",
         "link_url": "",
         "link_text": "",
         "heading_font": "assistant_n4",
