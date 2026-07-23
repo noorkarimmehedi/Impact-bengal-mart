@@ -357,8 +357,8 @@
               </div>
 
               <div class="best-sellers__body">
-                {%- assign rating_value = product.metafields.reviews.rating.value.rating | default: 0 -%}
-                {%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 -%}
+                {%- assign rating_value = product.metafields.reviews.rating.value.rating | default: 0 | plus: 0 -%}
+                {%- assign rating_count = product.metafields.reviews.rating_count.value | default: 0 | plus: 0 -%}
 
                 <div class="best-sellers__prices">
                   {%- assign price_prefix = '' -%}
