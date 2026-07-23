@@ -4,7 +4,21 @@
   .ai-tab-accordion-{{ ai_gen_id }} {
     width: 100%;
     max-width: 100%;
-    padding: 0 var(--container-gutter, 16px);
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    padding: 24px;
+    box-sizing: border-box;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  @media screen and (max-width: 749px) {
+    .ai-tab-accordion-{{ ai_gen_id }} {
+      padding: 16px; /* inside padding left/right */
+      margin-left: 16px; /* gap outside the border */
+      margin-right: 16px; /* gap outside the border */
+      width: calc(100% - 32px);
+    }
   }
 
   .ai-tab-accordion__header-wrapper-{{ ai_gen_id }} {
