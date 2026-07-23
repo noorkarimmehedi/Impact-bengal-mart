@@ -116,6 +116,10 @@ Supported variables
           }
         </style>
       {%- endif -%}
+      
+      {%- assign whatsapp_message = 'I would like to order: ' | append: product.title | append: ' - ' | append: shop.url | append: product.url -%}
+      {%- assign whatsapp_url = 'https://wa.me/8801864168980?text=' | append: (whatsapp_message | url_param_escape) -%}
+      {%- render 'button', content: 'Order on WhatsApp', href: whatsapp_url, size: button_size, external: true, background: '#25D366', text_color: '#ffffff' -%}
     </buy-buttons>
   </div>
 {%- endform -%}
