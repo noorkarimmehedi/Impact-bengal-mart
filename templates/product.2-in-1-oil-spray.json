@@ -175,6 +175,55 @@
       ],
       "settings": {}
     },
+    "1784819119f5e3dca7": {
+      "type": "apps",
+      "blocks": {
+        "moast_carousel_zr4N6T": {
+          "type": "shopify://apps/moast/blocks/carousel/1ac7547b-5443-446c-868c-7fab4566ee16",
+          "settings": {
+            "dynamic": true,
+            "feed": "",
+            "feed_usage": "back_up",
+            "header": "",
+            "slide_type": "cards",
+            "product_cards": "overlay",
+            "autoplay_mode": "none",
+            "autoscroll_duration": 0,
+            "slide_size": "250",
+            "aspect_ratio": "vertical",
+            "border": 0,
+            "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
+            "slide_rounding": "6",
+            "slide_spacing": 5,
+            "padding_top": 0,
+            "pagination": "below",
+            "alignment": "center",
+            "click_action": "fullscreen",
+            "float_location": "bottom_right",
+            "float_size": "medium",
+            "show_captions": false,
+            "show_handles": false,
+            "custom_css": ""
+          }
+        }
+      },
+      "block_order": [
+        "moast_carousel_zr4N6T"
+      ],
+      "settings": {
+        "full_width": true,
+        "remove_vertical_spacing": false,
+        "remove_horizontal_spacing": false,
+        "background": "",
+        "background_gradient": "",
+        "text_color": "",
+        "enable_review_integration": true,
+        "review_header_gradient": "linear-gradient(135deg, rgba(255, 194, 102, 1), rgba(255, 163, 26, 1) 100%)",
+        "review_header_text_color": "#000000",
+        "review_button_background": "#000000",
+        "review_button_text_color": "#ffffff"
+      }
+    },
     "1758906325660f2750": {
       "type": "_blocks",
       "blocks": {
@@ -285,6 +334,7 @@
   "order": [
     "main",
     "1762422151c2d27b21",
+    "1784819119f5e3dca7",
     "1758906325660f2750",
     "1784816785536ad970",
     "related-products",
