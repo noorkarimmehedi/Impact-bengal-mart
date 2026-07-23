@@ -187,7 +187,7 @@
             "header": "",
             "slide_type": "cards",
             "product_cards": "overlay",
-            "autoplay_mode": "showcase",
+            "autoplay_mode": "sequential",
             "autoscroll_duration": 0,
             "slide_size": "250",
             "aspect_ratio": "vertical",
@@ -213,7 +213,7 @@
       "settings": {
         "full_width": true,
         "remove_vertical_spacing": true,
-        "remove_horizontal_spacing": false,
+        "remove_horizontal_spacing": true,
         "background": "",
         "background_gradient": "",
         "text_color": "",
