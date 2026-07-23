@@ -87,9 +87,10 @@ Supported variables
           #shopify-section-{{ section.id }} .buy-buttons {
             display: flex !important;
             flex-direction: column !important;
+            gap: 10px !important; /* Set standard gap */
           }
           
-          #shopify-section-{{ section.id }} .buy-buttons > * {
+          #shopify-section-{{ section.id }} .buy-buttons > *:not(style) {
             width: 100% !important;
             flex: 0 0 54px !important; /* Force exact height */
             height: 54px !important;
@@ -120,7 +121,9 @@ Supported variables
       {%- assign whatsapp_message = 'I would like to order: ' | append: product.title | append: ' - ' | append: shop.url | append: product.url -%}
       {%- assign whatsapp_message_encoded = whatsapp_message | url_param_escape -%}
       {%- assign whatsapp_url = 'https://wa.me/8801864168980?text=' | append: whatsapp_message_encoded -%}
-      {%- render 'button', content: 'Order on WhatsApp', href: whatsapp_url, size: button_size, external: true, background: '#25D366', text_color: '#ffffff' -%}
+      <a href="{{ whatsapp_url }}" target="_blank" class="button w-full" style="background-color: #25D366 !important; color: white !important; border: none !important; font-size: var(--text-base) !important; font-weight: bold; border-radius: var(--rounded-button); display: flex; align-items: center; justify-content: center;">
+        Order on WhatsApp
+      </a>
     </buy-buttons>
   </div>
 {%- endform -%}
