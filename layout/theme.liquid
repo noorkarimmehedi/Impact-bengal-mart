@@ -107,7 +107,19 @@ NOTE TO DEVELOPERS: welcome to Impact theme! We hope that you will enjoy editing
   body, html {
     margin: 0;
     padding: 0;
+    height: auto;
+    min-height: 100vh;
   }
+}
+
+/* Ensure no huge white gap at the bottom of the page */
+html, body {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+#main, .shopify-section-group-footer-group, .footer {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
 }
 </style>
 
