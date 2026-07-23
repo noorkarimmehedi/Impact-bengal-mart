@@ -103,6 +103,8 @@ Supported variables
             display: flex;
             align-items: stretch;
             justify-content: stretch;
+            line-height: 54px !important; /* Center text vertically */
+            --shopify-payment-button-padding: 0 !important; /* Remove padding that pushes text down */
           }
           
           /* Target inside payment button wrapper if possible */
@@ -110,6 +112,7 @@ Supported variables
             width: 100% !important;
             height: 100% !important;
             margin: 0 !important;
+            line-height: 54px !important; /* Center text vertically */
           }
         </style>
       {%- endif -%}
