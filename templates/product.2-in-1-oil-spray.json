@@ -195,7 +195,7 @@
             "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
             "slide_rounding": "6",
             "slide_spacing": 5,
-            "padding_top": 0,
+            "padding_top": 12,
             "pagination": "below",
             "alignment": "center",
             "click_action": "fullscreen",
@@ -212,7 +212,7 @@
       ],
       "settings": {
         "full_width": true,
-        "remove_vertical_spacing": false,
+        "remove_vertical_spacing": true,
         "remove_horizontal_spacing": false,
         "background": "",
         "background_gradient": "",
