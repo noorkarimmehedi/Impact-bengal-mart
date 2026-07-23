@@ -189,7 +189,7 @@
             "product_cards": "overlay",
             "autoplay_mode": "sequential",
             "autoscroll_duration": 0,
-            "slide_size": "250",
+            "slide_size": "300",
             "aspect_ratio": "vertical",
             "border": 0,
             "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
