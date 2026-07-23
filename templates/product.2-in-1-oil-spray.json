@@ -104,7 +104,7 @@
         "show_fixed_add_to_cart": true,
         "desktop_media_width": 55,
         "desktop_media_layout": "carousel_thumbnails_left",
-        "mobile_media_size": "expanded",
+        "mobile_media_size": "contained",
         "mobile_carousel_control": "thumbnails",
         "enable_video_autoplay": false,
         "enable_video_looping": true,
@@ -217,23 +217,17 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "recommendations_count": 6,
         "products": [],
         "full_width": true,
-        "stack_products": true,
-        "show_progress_bar": false,
-        "products_per_row_mobile": "2",
+        "products_count": 8,
         "products_per_row_desktop": 3,
-        "subheading": "",
         "title": "You may also like",
-        "content": "",
+        "heading_font": "playfair_display_n4",
+        "card_corner_radius": 16,
+        "mobile_card_gap": 12,
         "background": "",
-        "background_gradient": "",
         "text_color": "",
-        "heading_color": "",
-        "heading_gradient": "",
-        "product_card_background": "",
-        "product_card_text_color": ""
+        "product_card_background": ""
       }
     },
     "1762155169b11f53e4": {
