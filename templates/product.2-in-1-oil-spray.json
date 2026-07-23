@@ -187,7 +187,7 @@
             "header": "",
             "slide_type": "cards",
             "product_cards": "overlay",
-            "autoplay_mode": "sequential",
+            "autoplay_mode": "showcase",
             "autoscroll_duration": 0,
             "slide_size": "300",
             "aspect_ratio": "vertical",
