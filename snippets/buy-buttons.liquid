@@ -118,16 +118,17 @@ Supported variables
           
           /* Animated WhatsApp Button Styles */
           #shopify-section-{{ section.id }} .whatsapp-animated-btn {
-            background-color: #25D366 !important;
-            color: white !important;
+            background-color: transparent !important;
+            color: #25D366 !important;
+            border: 1px solid #25D366 !important;
             text-decoration: none !important;
             font-size: 15px !important;
             font-weight: bold;
-            border-radius: 9999px !important;
+            border-radius: var(--rounded-button, 4px) !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
-            padding: 4px 50px 4px 20px !important;
+            padding: 4px 20px 4px 50px !important;
             margin: 0 !important;
             box-sizing: border-box !important;
             height: 54px !important;
@@ -140,7 +141,7 @@ Supported variables
             cursor: pointer !important;
           }
           #shopify-section-{{ section.id }} .whatsapp-animated-btn:hover {
-            padding: 4px 20px 4px 50px !important;
+            padding: 4px 50px 4px 20px !important;
           }
           #shopify-section-{{ section.id }} .whatsapp-animated-btn span {
             position: relative;
@@ -149,11 +150,11 @@ Supported variables
           }
           #shopify-section-{{ section.id }} .whatsapp-animated-btn .icon-circle {
             position: absolute !important;
-            right: 4px !important;
-            width: 46px !important;
-            height: 46px !important;
-            background-color: white !important;
-            color: #25D366 !important;
+            left: 4px !important;
+            width: 44px !important;
+            height: 44px !important;
+            background-color: #25D366 !important;
+            color: white !important;
             border-radius: 50% !important;
             display: flex !important;
             align-items: center !important;
@@ -161,8 +162,7 @@ Supported variables
             transition: all 0.5s ease !important;
           }
           #shopify-section-{{ section.id }} .whatsapp-animated-btn:hover .icon-circle {
-            right: calc(100% - 50px) !important;
-            transform: rotate(45deg) !important;
+            left: calc(100% - 48px) !important;
           }
           #shopify-section-{{ section.id }} .whatsapp-animated-btn .icon-circle svg {
             width: 24px;
