@@ -57,7 +57,7 @@
 
   .ai-category-slider-item-{{ ai_gen_id }} {
     flex: 0 0 auto;
-    width: calc((100% - {{ block.settings.items_per_view_desktop | minus: 1 | times: block.settings.gap }}px) / {{ block.settings.items_per_view_desktop }});
+    width: {{ block.settings.card_size }}px;
     scroll-snap-align: start;
   }
 
@@ -71,8 +71,8 @@
   }
 
   .ai-category-slider-image-wrapper-{{ ai_gen_id }} {
-    width: {{ block.settings.card_size }}px;
-    height: {{ block.settings.card_size }}px;
+    width: 100%;
+    aspect-ratio: 1 / 1;
     max-width: 100%;
     display: flex;
     align-items: center;
@@ -167,7 +167,7 @@
     }
 
     .ai-category-slider-item-{{ ai_gen_id }} {
-      width: calc((100% - {{ block.settings.items_per_view_mobile | minus: 1 | times: block.settings.gap }}px) / {{ block.settings.items_per_view_mobile }});
+      width: {{ block.settings.card_size | times: 0.8 }}px;
     }
 
     .ai-category-slider-header-{{ ai_gen_id }} {
@@ -452,24 +452,6 @@
       "unit": "px",
       "label": "Card size",
       "default": 140
-    },
-    {
-      "type": "range",
-      "id": "items_per_view_desktop",
-      "min": 2,
-      "max": 6,
-      "step": 1,
-      "label": "Cards per view (desktop)",
-      "default": 4
-    },
-    {
-      "type": "range",
-      "id": "items_per_view_mobile",
-      "min": 1,
-      "max": 3,
-      "step": 1,
-      "label": "Cards per view (mobile)",
-      "default": 2
     },
     {
       "type": "range",
