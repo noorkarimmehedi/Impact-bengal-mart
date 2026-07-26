@@ -156,6 +156,18 @@
     text-align: center;
   }
 
+  @media screen and (min-width: 750px) {
+    .ai-category-slider-header-{{ ai_gen_id }} {
+      text-align: center !important;
+    }
+    
+    .ai-category-slider-track-{{ ai_gen_id }} {
+      width: max-content;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+  }
+
   @media screen and (max-width: 749px) {
     .ai-category-slider-{{ ai_gen_id }} {
       padding-top: {{ block.settings.padding_top | times: 0.6 }}px;
