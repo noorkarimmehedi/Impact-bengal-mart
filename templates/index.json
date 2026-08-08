@@ -77,8 +77,6 @@
         "ai_gen_block_f031582_LFGh7x": {
           "type": "ai_gen_block_f031582",
           "settings": {
-            "image_desktop": "shopify://shop_images/spacejoy-9M66C_w_ToM-unsplash.jpg",
-            "image_mobile": "shopify://shop_images/spacejoy-9M66C_w_ToM-unsplash.jpg",
             "show_overlay": true,
             "overlay_color": "#000000",
             "overlay_opacity": 5,
@@ -278,11 +276,11 @@
             "nav_icon_color": "#1a1a1a",
             "counter_size": 18,
             "counter_color": "#1a1a1a",
-            "collection_1": "new-arrivals",
+            "collection_1": "our-new-arrivals",
             "custom_image_1": "shopify://shop_images/ChatGPT_Image_Aug_8_2026_07_57_10_PM.png",
-            "collection_2": "best-sellers",
+            "collection_2": "our-best-sellers",
             "custom_image_2": "shopify://shop_images/ChatGPT_Image_Aug_8_2026_07_58_00_PM.png",
-            "collection_3": "perfumes",
+            "collection_3": "rinnoras-perfumes",
             "custom_image_3": "shopify://shop_images/ChatGPT_Image_Aug_8_2026_08_00_03_PM.png",
             "collection_4": "home-essentials",
             "collection_5": "kitchen-essentials",
