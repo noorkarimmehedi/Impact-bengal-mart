@@ -152,6 +152,13 @@ the underlying logic of the menu.
     color: #fff;
   }
 
+  @media screen and (max-width: 699px) {
+    .header__search-bar {
+      margin-inline: calc(-1 * var(--container-gutter));
+      padding-inline: var(--spacing-3);
+    }
+  }
+
   .header-search-form {
     position: relative;
     width: 100%;
