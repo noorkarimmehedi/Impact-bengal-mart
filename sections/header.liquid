@@ -428,18 +428,18 @@ the underlying logic of the menu.
             <input
               type="search"
               name="q"
-              placeholder="{{ 'header.search.placeholder' | t | default: 'Search products...' }}"
+              placeholder="{{ 'search.general.search_placeholder' | t | default: 'Search products...' }}"
               autocomplete="off"
               autocorrect="off"
               autocapitalize="off"
               spellcheck="false"
-              aria-label="{{ 'header.search.placeholder' | t | default: 'Search products' }}"
+              aria-label="{{ 'search.general.search_placeholder' | t | default: 'Search products' }}"
               aria-autocomplete="list"
               aria-controls="predictive-search-results"
-              aria-expanded="false"
               aria-haspopup="listbox"
+              minlength="2"
             >
-            <button type="submit" aria-label="{{ 'header.search.submit' | t | default: 'Search' }}">
+            <button type="submit" aria-label="{{ 'search.general.title' | t | default: 'Search' }}">
               {%- render 'icon' with 'search' -%}
             </button>
 
@@ -608,13 +608,12 @@ the underlying logic of the menu.
     const cleanup = new AbortController();
 
     function clearPredictiveSearch() {
-      searchForm.reset();
+      searchInput.value = '';
+      searchInput.dispatchEvent(new Event('input', { bubbles: true }));
     }
 
-    // Enforce minimum character threshold before showing predictive results
     searchInput.addEventListener('input', function() {
       const hasValue = searchInput.value.trim().length >= 2;
-      searchInput.setAttribute('aria-expanded', hasValue.toString());
       if (!hasValue) {
         clearPredictiveSearch();
       }
