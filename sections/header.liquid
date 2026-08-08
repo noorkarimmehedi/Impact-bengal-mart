@@ -126,17 +126,17 @@ the underlying logic of the menu.
 
   .header__search-bar button {
     position: absolute;
-    right: 4px;
+    right: 6px;
     top: 50%;
     transform: translateY(-50%);
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     padding: 0;
     border: none;
-    border-radius: 6px;
+    border-radius: 50%;
     background: var(--accent-color, #000);
     color: #fff;
     cursor: pointer;
@@ -229,11 +229,6 @@ the underlying logic of the menu.
             <span class="sr-only">{{ 'header.general.open_menu' | t }}</span>
             {%- render 'icon' with 'hamburger' -%}
           </button>
-
-          <a href="{{ routes.search_url }}" class="tap-area sm:hidden" aria-controls="search-drawer">
-            <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
-            {%- render 'icon' with 'search' -%}
-          </a>
 
           {%- if section.settings.layout != 'drawer' and section.settings.menu.links.size > 0 -%}
             <nav class="header__link-list {% if section.settings.layout == 'logo_left_navigation_center' %}justify-center{% endif %} wrap" role="navigation">
@@ -391,11 +386,6 @@ the underlying logic of the menu.
               {%- render 'localization-selector', type: 'locale', popover_vertical_position: 'end' -%}
             </div>
           {%- endif -%}
-
-          <a href="{{ routes.search_url }}" class="hidden tap-area sm:block" aria-controls="search-drawer">
-            <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
-            {%- render 'icon' with 'search' -%}
-          </a>
           
           {%- if shop.customer_accounts_enabled -%}
             <a href="{{ routes.account_url }}" class="hidden tap-area sm:block">
