@@ -264,7 +264,7 @@
             "subheading": "Browse the Full Collection by Category",
             "subheading_size": 15,
             "subheading_color": "#666666",
-            "heading_font": "'Assistant', sans-serif",
+            "heading_font": "'Open Sans', sans-serif",
             "card_size": 124,
             "gap": 8,
             "card_background": "#ffffff",
