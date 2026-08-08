@@ -90,88 +90,155 @@ the underlying logic of the menu.
     }
   }
 
-  .header__search-bar form {
-    display: flex;
+  .header-search-form {
+    position: relative;
     width: 100%;
     max-width: 700px;
     margin: 0 auto;
+  }
+
+  .header-search-bar__wrapper {
     position: relative;
-  }
-
-  .header__search-bar input[type="search"] {
     width: 100%;
-    flex: 1;
-    height: 44px;
-    padding: 0 0 0 30px;
-    border: none !important;
-    border-bottom: 1px solid transparent !important;
-    border-radius: 0 !important;
-    font-size: 15px;
-    background: transparent !important;
-    outline: none;
-    box-shadow: none !important;
-    appearance: none;
-    -webkit-appearance: none;
-    transition: border-color 0.2s ease;
   }
 
-  .header__search-bar input[type="search"]::-webkit-search-cancel-button,
-  .header__search-bar input[type="search"]::-webkit-search-decoration {
+  .search-pill {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 48px;
+    background: #e8e8e8;
+    border-radius: 9999px;
+    padding: 0 16px;
+    gap: 0;
+  }
+
+  .search-pill__dropdown {
+    position: relative;
+    flex-shrink: 0;
+  }
+
+  .search-pill__dropdown-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 10px;
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+    white-space: nowrap;
+  }
+
+  .search-pill__dropdown-btn svg {
+    width: 12px;
+    height: 12px;
+    transition: transform 0.2s ease;
+  }
+
+  .search-pill__dropdown.open .search-pill__dropdown-btn svg {
+    transform: rotate(180deg);
+  }
+
+  .search-pill__dropdown-menu {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    left: 0;
+    min-width: 140px;
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    padding: 6px 0;
+    z-index: 200;
+  }
+
+  .search-pill__dropdown.open .search-pill__dropdown-menu {
+    display: block;
+  }
+
+  .search-pill__dropdown-item {
+    display: block;
+    width: 100%;
+    padding: 10px 16px;
+    background: transparent;
+    border: none;
+    text-align: left;
+    font-size: 14px;
+    color: #1a1a1a;
+    cursor: pointer;
+    transition: background 0.15s ease;
+  }
+
+  .search-pill__dropdown-item:hover {
+    background: #f5f5f5;
+  }
+
+  .search-pill__dropdown-item.active {
+    font-weight: 600;
+  }
+
+  .search-pill__divider {
+    width: 1px;
+    height: 24px;
+    background: #c0c0c0;
+    flex-shrink: 0;
+    margin: 0 4px;
+  }
+
+  .search-pill__input {
+    flex: 1;
+    height: 100%;
+    border: none;
+    background: transparent;
+    font-size: 15px;
+    color: #1a1a1a;
+    outline: none;
+    padding: 0;
+    min-width: 0;
+  }
+
+  .search-pill__input::placeholder {
+    color: #6b6b6b;
+  }
+
+  .search-pill__input::-webkit-search-cancel-button,
+  .search-pill__input::-webkit-search-decoration {
     -webkit-appearance: none;
     margin: 0;
   }
 
-  .header__search-bar input[type="search"]::placeholder {
-    color: rgba(0, 0, 0, 0.45);
-  }
-
-  .header__search-bar input[type="search"]:focus {
-    border-bottom-color: var(--accent-color, #000) !important;
-    box-shadow: none !important;
-  }
-
-  .header__search-bar button {
-    position: absolute;
-    left: 0;
-    top: 50%;
-    transform: translateY(-50%);
+  .search-pill__submit {
+    flex-shrink: 0;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 20px;
-    height: 20px;
-    padding: 0;
+    width: 36px;
+    height: 36px;
     border: none;
     background: transparent;
-    color: rgba(0, 0, 0, 0.45);
     cursor: pointer;
-    transition: color 0.2s ease;
+    color: #1a1a1a;
+    padding: 0;
+    margin-left: 4px;
   }
 
-  .header__search-bar button:hover {
-    color: rgba(0, 0, 0, 0.8);
-  }
-
-  .header__search-bar button svg {
-    width: 18px;
-    height: 18px;
-    color: inherit;
+  .search-pill__submit svg {
+    width: 22px;
+    height: 22px;
   }
 
   @media screen and (max-width: 699px) {
     .header__wrapper {
       padding-inline: var(--spacing-3);
     }
-  }
 
-  .header-search-form {
-    position: relative;
-    width: 100%;
-  }
-
-  .header-search-bar__wrapper {
-    position: relative;
-    width: 100%;
+    .search-pill {
+      height: 44px;
+      padding: 0 12px;
+    }
   }
 
   .header-predictive-search {
@@ -422,23 +489,38 @@ the underlying logic of the menu.
         <form action="{{ routes.search_url }}" method="get" role="search" class="header-search-form">
           <input type="hidden" name="type" value="product">
           <div class="header-search-bar__wrapper">
-            <input
-              type="search"
-              name="q"
-              placeholder="{{ 'search.general.search_placeholder' | t | default: 'Search products...' }}"
-              autocomplete="off"
-              autocorrect="off"
-              autocapitalize="off"
-              spellcheck="false"
-              aria-label="{{ 'search.general.search_placeholder' | t | default: 'Search products' }}"
-              aria-autocomplete="list"
-              aria-controls="predictive-search-results"
-              aria-haspopup="listbox"
-              minlength="2"
-            >
-            <button type="submit" aria-label="{{ 'search.general.title' | t | default: 'Search' }}">
-              {%- render 'icon' with 'search' -%}
-            </button>
+            <div class="search-pill">
+              <div class="search-pill__dropdown" id="search-category-dropdown">
+                <button type="button" class="search-pill__dropdown-btn" aria-haspopup="listbox" aria-expanded="false">
+                  <span class="search-pill__dropdown-label">All</span>
+                  {%- render 'icon' with 'chevron-bottom' -%}
+                </button>
+                <div class="search-pill__dropdown-menu" role="listbox">
+                  <button type="button" class="search-pill__dropdown-item active" role="option" data-value="product">All</button>
+                  <button type="button" class="search-pill__dropdown-item" role="option" data-value="product">Products</button>
+                  <button type="button" class="search-pill__dropdown-item" role="option" data-value="collection">Collections</button>
+                </div>
+              </div>
+              <div class="search-pill__divider"></div>
+              <input
+                type="search"
+                name="q"
+                class="search-pill__input"
+                placeholder="What are you looking for?"
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+                aria-label="Search products"
+                aria-autocomplete="list"
+                aria-controls="predictive-search-results"
+                aria-haspopup="listbox"
+                minlength="2"
+              >
+              <button type="submit" class="search-pill__submit" aria-label="Search">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+              </button>
+            </div>
 
             <predictive-search class="predictive-search header-predictive-search" section-id="search-drawer" id="predictive-search-results">
               <div slot="idle">
@@ -661,10 +743,46 @@ the underlying logic of the menu.
   })();
 
   (function() {
+    const dropdown = document.getElementById('search-category-dropdown');
+    if (!dropdown) return;
+
+    const btn = dropdown.querySelector('.search-pill__dropdown-btn');
+    const menu = dropdown.querySelector('.search-pill__dropdown-menu');
+    const label = dropdown.querySelector('.search-pill__dropdown-label');
+    const items = dropdown.querySelectorAll('.search-pill__dropdown-item');
+
+    btn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const isOpen = dropdown.classList.contains('open');
+      dropdown.classList.toggle('open');
+      btn.setAttribute('aria-expanded', !isOpen);
+    });
+
+    items.forEach(function(item) {
+      item.addEventListener('click', function(e) {
+        e.stopPropagation();
+        label.textContent = item.textContent;
+        items.forEach(function(i) { i.classList.remove('active'); });
+        item.classList.add('active');
+        dropdown.classList.remove('open');
+        btn.setAttribute('aria-expanded', 'false');
+      });
+    });
+
+    document.addEventListener('click', function() {
+      dropdown.classList.remove('open');
+      btn.setAttribute('aria-expanded', 'false');
+    });
+
+    menu.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  })();
+
+  (function() {
     const typewriterInput = document.querySelector('.header__search-bar input[type="search"]');
     if (!typewriterInput) return;
 
-    const prefix = 'Search for ';
     const phrases = [
       'home essentials',
       'kitchen gadgets',
@@ -701,7 +819,7 @@ the underlying logic of the menu.
         }
       }
 
-      typewriterInput.placeholder = prefix + current.substring(0, charIndex) + (deleting ? '' : '...|');
+      typewriterInput.placeholder = current.substring(0, charIndex) + (deleting ? '' : '...');
       timer = setTimeout(tick, deleting ? 35 : 70);
     }
 
