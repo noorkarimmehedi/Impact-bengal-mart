@@ -664,12 +664,13 @@ the underlying logic of the menu.
     const typewriterInput = document.querySelector('.header__search-bar input[type="search"]');
     if (!typewriterInput) return;
 
+    const prefix = 'Search for ';
     const phrases = [
-      'Search home essentials...',
-      'Search kitchen gadgets...',
-      'Search cookware...',
-      'Search home decor...',
-      'Search dinnerware...'
+      'home essentials',
+      'kitchen gadgets',
+      'cookware',
+      'home decor',
+      'dinnerware'
     ];
 
     let phraseIndex = 0;
@@ -700,7 +701,7 @@ the underlying logic of the menu.
         }
       }
 
-      typewriterInput.placeholder = current.substring(0, charIndex) + (deleting ? '' : '|');
+      typewriterInput.placeholder = prefix + current.substring(0, charIndex) + (deleting ? '' : '...|');
       timer = setTimeout(tick, deleting ? 35 : 70);
     }
 
