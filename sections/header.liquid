@@ -659,6 +659,70 @@ the underlying logic of the menu.
       cleanup.abort();
     }, { once: true, signal: cleanup.signal });
   })();
+
+  (function() {
+    const typewriterInput = document.querySelector('.header__search-bar input[type="search"]');
+    if (!typewriterInput) return;
+
+    const phrases = [
+      'Search home essentials...',
+      'Search kitchen gadgets...',
+      'Search cookware...',
+      'Search home decor...',
+      'Search dinnerware...'
+    ];
+
+    let phraseIndex = 0;
+    let charIndex = 0;
+    let deleting = false;
+    let paused = false;
+    let timer = null;
+
+    function tick() {
+      if (paused) return;
+
+      const current = phrases[phraseIndex];
+
+      if (!deleting) {
+        charIndex++;
+        if (charIndex > current.length) {
+          deleting = true;
+          timer = setTimeout(tick, 1200);
+          return;
+        }
+      } else {
+        charIndex--;
+        if (charIndex < 0) {
+          deleting = false;
+          phraseIndex = (phraseIndex + 1) % phrases.length;
+          timer = setTimeout(tick, 300);
+          return;
+        }
+      }
+
+      typewriterInput.placeholder = current.substring(0, charIndex) + (deleting ? '' : '|');
+      timer = setTimeout(tick, deleting ? 35 : 70);
+    }
+
+    function pause() {
+      paused = true;
+    }
+
+    function resume() {
+      if (typewriterInput.value.trim().length > 0) {
+        paused = true;
+        return;
+      }
+      paused = false;
+      tick();
+    }
+
+    typewriterInput.addEventListener('focus', pause);
+    typewriterInput.addEventListener('blur', resume);
+    typewriterInput.addEventListener('input', resume);
+
+    tick();
+  })();
 </script>
 
 {% schema %}
