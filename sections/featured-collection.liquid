@@ -316,6 +316,33 @@
       font-size: 12px;
       padding: 8px 12px;
     }
+
+    /* Hide review stars on mobile */
+    .best-sellers__rating {
+      display: none;
+    }
+
+    /* Switch from horizontal scroll carousel to 2-column grid on mobile */
+    .best-sellers__track {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--best-sellers-mobile-gap);
+      overflow-x: visible;
+      scroll-snap-type: none;
+      padding: 4px 0 8px;
+    }
+
+    .best-sellers__slide {
+      flex: none;
+      width: 100%;
+      min-width: 0;
+      scroll-snap-align: none;
+    }
+
+    /* Hide navigation arrows on mobile since we use grid */
+    .best-sellers__nav {
+      display: none;
+    }
   }
 </style>
 
