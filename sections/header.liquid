@@ -74,33 +74,19 @@ the underlying logic of the menu.
     }
   {%- endif -%}
 
-  .header__search-bar-container {
+  .header__search-bar {
     grid-column: 1 / -1;
-    display: grid;
-    grid-template-rows: 0fr;
-    transition: grid-template-rows 0.3s ease, opacity 0.3s ease, margin 0.3s ease;
-    opacity: 0;
-    pointer-events: none;
-    margin-bottom: 0;
-    padding: 0 var(--spacing-4);
-  }
-
-  .header__search-bar-container.is-expanded {
-    grid-template-rows: 1fr;
-    opacity: 1;
-    pointer-events: auto;
-    margin-bottom: var(--spacing-4);
+    width: 100%;
+    padding: var(--spacing-2) var(--spacing-4) var(--spacing-4);
+    box-sizing: border-box;
   }
 
   @media screen and (min-width: 700px) {
-    .header__search-bar-container {
-      padding: 0 var(--spacing-6);
+    .header__search-bar {
+      display: flex;
+      justify-content: center;
+      padding: var(--spacing-2) var(--spacing-6) var(--spacing-5);
     }
-  }
-
-  .header__search-bar {
-    min-height: 0;
-    overflow: visible;
   }
 
   .header__search-bar form {
@@ -239,10 +225,10 @@ the underlying logic of the menu.
             {%- render 'icon' with 'hamburger' -%}
           </button>
 
-          <button type="button" class="tap-area sm:hidden js-search-toggle" aria-expanded="false">
+          <a href="{{ routes.search_url }}" class="tap-area sm:hidden" aria-controls="search-drawer">
             <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
             {%- render 'icon' with 'search' -%}
-          </button>
+          </a>
 
           {%- if section.settings.layout != 'drawer' and section.settings.menu.links.size > 0 -%}
             <nav class="header__link-list {% if section.settings.layout == 'logo_left_navigation_center' %}justify-center{% endif %} wrap" role="navigation">
@@ -401,10 +387,10 @@ the underlying logic of the menu.
             </div>
           {%- endif -%}
 
-          <button type="button" class="hidden tap-area sm:block js-search-toggle" aria-expanded="false">
+          <a href="{{ routes.search_url }}" class="hidden tap-area sm:block" aria-controls="search-drawer">
             <span class="sr-only">{{ 'header.general.open_search' | t }}</span>
             {%- render 'icon' with 'search' -%}
-          </button>
+          </a>
           
           {%- if shop.customer_accounts_enabled -%}
             <a href="{{ routes.account_url }}" class="hidden tap-area sm:block">
@@ -426,9 +412,8 @@ the underlying logic of the menu.
         </div>
       </div>
 
-      <div class="header__search-bar-container">
-        <div class="header__search-bar">
-          <form action="{{ routes.search_url }}" method="get" role="search" class="header-search-form">
+      <div class="header__search-bar">
+        <form action="{{ routes.search_url }}" method="get" role="search" class="header-search-form">
           <input type="hidden" name="type" value="product">
           <div class="header-search-bar__wrapper">
             <input
@@ -565,7 +550,6 @@ the underlying logic of the menu.
             </predictive-search>
           </div>
         </form>
-        </div>
       </div>
     </div>
   </store-header>
@@ -634,53 +618,18 @@ the underlying logic of the menu.
       updatePredictiveSearchVisibility();
     }, { signal: cleanup.signal });
 
-    const searchContainer = document.querySelector('.header__search-bar-container');
-    const searchToggles = document.querySelectorAll('.js-search-toggle');
-
-    function toggleSearch(forceClose = false) {
-      if (!searchContainer) return;
-      
-      let isExpanded = false;
-      if (forceClose) {
-        searchContainer.classList.remove('is-expanded');
-      } else {
-        isExpanded = searchContainer.classList.toggle('is-expanded');
-      }
-
-      if (isExpanded) {
-        setTimeout(() => searchInput.focus(), 50);
-      } else {
-        predictiveSearch.classList.remove('is-active');
-        searchInput.blur();
-      }
-    }
-
-    searchToggles.forEach(toggle => {
-      toggle.addEventListener('click', function(e) {
-        e.preventDefault();
-        toggleSearch();
-      });
-    });
-
+    // Handle Escape key to close predictive search
     searchInput.addEventListener('keydown', function(e) {
       if (e.key === 'Escape') {
-        toggleSearch(true);
+        searchInput.blur();
+        predictiveSearch.classList.remove('is-active');
       }
     }, { signal: cleanup.signal });
 
-    // Handle click outside to close predictive search and the search bar if empty
+    // Handle click outside to close predictive search
     document.addEventListener('click', function(e) {
-      // If clicking inside the search form or clicking the toggle button, do nothing here
-      if (searchForm.contains(e.target) || e.target.closest('.js-search-toggle')) {
-        return;
-      }
-      
-      // If clicking outside, hide predictive dropdown
-      predictiveSearch.classList.remove('is-active');
-      
-      // Optionally close the whole search bar if it's empty
-      if (searchInput.value.trim().length === 0) {
-        toggleSearch(true);
+      if (!searchForm.contains(e.target)) {
+        predictiveSearch.classList.remove('is-active');
       }
     }, { signal: cleanup.signal });
 
