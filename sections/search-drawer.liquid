@@ -64,7 +64,7 @@
                   [role="tablist"]::-webkit-scrollbar {display: none;}
 
                   :host {
-                    --predictive-search-column-width: {% if categories_count > 2 %}0px{% else %}400px{% endif %};
+                    --predictive-search-column-width: {% if categories_count > 2 %}0px{% else %}min(100%, 400px){% endif %};
                   }
                 </style>
 
@@ -88,46 +88,6 @@
                   {%- render 'predictive-search-result-item' for predictive_search.resources.products as item, type: 'product' -%}
                 </div>
               {%- endif -%}
-
-              {%- if predictive_search.resources.queries.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.suggestions' | t -}}</button>
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for predictive_search.resources.queries as item, type: 'query' -%}
-                </div>
-              {%- endif -%}
-
-              {%- if predictive_search.resources.articles.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for predictive_search.resources.articles as item, type: 'article' -%}
-                </div>
-              {%- endif -%}
-
-              {%- if predictive_search.resources.collections.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.collections' | t -}}</button>
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for predictive_search.resources.collections as item, type: 'collection' -%}
-                </div>
-              {%- endif -%}
-
-              {%- if predictive_search.resources.pages.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
-                </div>
-
-                <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
-                  {%- render 'predictive-search-result-item' for predictive_search.resources.pages as item, type: 'page' -%}
-                </div>
-              {%- endif -%}
             </x-tabs>
           {%- endif -%}
         {%- elsif search.performed -%}
@@ -138,7 +98,7 @@
                   [role="tablist"]::-webkit-scrollbar {display: none;}
 
                   :host {
-                    --predictive-search-column-width: {% if categories_count > 2 %}0px{% else %}400px{% endif %};
+                    --predictive-search-column-width: {% if categories_count > 2 %}0px{% else %}min(100%, 400px){% endif %};
                   }
                 </style>
 
@@ -147,8 +107,6 @@
               </template>
 
               {%- assign product_results = search.results | where: 'object_type', 'product' | slice: 0, 10 -%}
-              {%- assign article_results = search.results | where: 'object_type', 'article' | slice: 0, 10 -%}
-              {%- assign page_results = search.results | where: 'object_type', 'page' | slice: 0, 10 -%}
 
               {%- if product_results.size > 0 -%}
                 <div class="predictive-search__tab-item" slot="title">
@@ -157,26 +115,6 @@
 
                 <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
                   {%- render 'predictive-search-result-item' for product_results as item, type: 'product' -%}
-                </div>
-              {%- endif -%}
-
-              {%- if article_results.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.posts' | t -}}</button>
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for article_results as item, type: 'article' -%}
-                </div>
-              {%- endif -%}
-
-              {%- if page_results.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.pages' | t -}}</button>
-                </div>
-
-                <div slot="content" class="predictive-search__tab-content v-stack gap-2 justify-start">
-                  {%- render 'predictive-search-result-item' for page_results as item, type: 'page' -%}
                 </div>
               {%- endif -%}
             </x-tabs>
