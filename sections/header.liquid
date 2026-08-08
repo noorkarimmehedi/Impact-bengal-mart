@@ -77,7 +77,7 @@ the underlying logic of the menu.
   .header__search-bar {
     grid-column: 1 / -1;
     width: 100%;
-    padding: var(--spacing-3) var(--spacing-4);
+    padding: var(--spacing-1) var(--spacing-4);
     box-sizing: border-box;
   }
 
@@ -85,7 +85,7 @@ the underlying logic of the menu.
     .header__search-bar {
       display: flex;
       justify-content: center;
-      padding: var(--spacing-3) var(--spacing-6);
+      padding: var(--spacing-1) var(--spacing-6);
     }
   }
 
@@ -433,7 +433,7 @@ the underlying logic of the menu.
               {%- render 'icon' with 'search' -%}
             </button>
 
-            <predictive-search class="predictive-search header-predictive-search" section-id="{{ section.id }}" id="predictive-search-results">
+            <predictive-search class="predictive-search header-predictive-search" section-id="search-drawer" id="predictive-search-results">
               <div slot="idle">
                 {%- if section.settings.search_menu != blank -%}
                   <div class="v-stack gap-3 sm:gap-4">
