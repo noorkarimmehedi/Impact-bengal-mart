@@ -466,7 +466,7 @@ the underlying logic of the menu.
           {%- endif -%}
           
           {%- if shop.customer_accounts_enabled -%}
-            <a href="{{ routes.account_url }}" class="hidden tap-area sm:block">
+            <a href="{{ routes.account_url }}" class="tap-area">
               <span class="sr-only">{{ 'header.general.open_account' | t }}</span>
               {%- render 'icon' with 'account' -%}
             </a>
