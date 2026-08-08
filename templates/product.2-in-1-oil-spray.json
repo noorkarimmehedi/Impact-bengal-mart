@@ -12,10 +12,6 @@
     "main": {
       "type": "main-product",
       "blocks": {
-        "judge_me_reviews_preview_badge_aAt3N4": {
-          "type": "shopify://apps/judge-me-reviews/blocks/preview_badge/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {}
-        },
         "vendor": {
           "type": "vendor",
           "disabled": true,
@@ -90,7 +86,6 @@
         }
       },
       "block_order": [
-        "judge_me_reviews_preview_badge_aAt3N4",
         "vendor",
         "title",
         "badges",
@@ -177,42 +172,6 @@
     },
     "1784819119f5e3dca7": {
       "type": "apps",
-      "blocks": {
-        "moast_carousel_zr4N6T": {
-          "type": "shopify://apps/moast/blocks/carousel/1ac7547b-5443-446c-868c-7fab4566ee16",
-          "settings": {
-            "dynamic": true,
-            "feed": "",
-            "feed_usage": "back_up",
-            "header": "",
-            "slide_type": "cards",
-            "product_cards": "overlay",
-            "autoplay_mode": "sequential",
-            "autoscroll_duration": 0,
-            "slide_size_mode": "fixed",
-            "slide_size": "300",
-            "slides_in_view_desktop": 4,
-            "slides_in_view_mobile": 2,
-            "aspect_ratio": "vertical",
-            "border": 0,
-            "border_color": "linear-gradient(to right, #833ab4, #fd1d1d, #fcb045)",
-            "slide_rounding": "6",
-            "slide_spacing": 5,
-            "padding_top": 12,
-            "pagination": "below",
-            "alignment": "center",
-            "click_action": "fullscreen",
-            "float_location": "bottom_right",
-            "float_size": "medium",
-            "show_captions": false,
-            "show_handles": false,
-            "custom_css": ""
-          }
-        }
-      },
-      "block_order": [
-        "moast_carousel_zr4N6T"
-      ],
       "settings": {
         "full_width": true,
         "remove_vertical_spacing": true,
@@ -273,20 +232,6 @@
     },
     "1784816785536ad970": {
       "type": "apps",
-      "blocks": {
-        "judge_me_reviews_review_widget_9nTC4K": {
-          "type": "shopify://apps/judge-me-reviews/blocks/review_widget/61ccd3b1-a9f2-4160-9fe9-4fec8413e5d8",
-          "settings": {
-            "review_data": "sample_data",
-            "max_width": 1200,
-            "show_shop_reviews": false,
-            "empty_state": "empty_widget"
-          }
-        }
-      },
-      "block_order": [
-        "judge_me_reviews_review_widget_9nTC4K"
-      ],
       "settings": {
         "full_width": true,
         "remove_vertical_spacing": true,
@@ -304,7 +249,11 @@
     "related-products": {
       "type": "related-products",
       "settings": {
-        "products": [],
+        "products": [
+          "insulated-tumbler-with-handle-straw",
+          "modern-fruit-storage-for-kitchen-counter",
+          "wall-mounted-organizers-and-storage"
+        ],
         "full_width": true,
         "products_count": 8,
         "products_per_row_desktop": 3,
