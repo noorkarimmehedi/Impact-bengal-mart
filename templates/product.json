@@ -173,6 +173,7 @@
         },
         "ai_gen_block_606562f_78CEbK": {
           "type": "ai_gen_block_606562f",
+          "disabled": true,
           "settings": {
             "whatsapp_number": "+8801819502705",
             "phone_number": "+8801819502705",
@@ -210,7 +211,6 @@
         "ai_gen_block_91d82e4_TMMi3B",
         "ai_gen_block_606562f_78CEbK"
       ],
-      "disabled": true,
       "settings": {}
     },
     "1784726314226b41d1": {
