@@ -58,66 +58,21 @@
           {%- else -%}
             <span class="sr-only" role="status">{{ 'search.results_count' | t: count: results_count, terms: predictive_search.terms }}</span>
 
-            <x-tabs class="predictive-search__tabs">
-              <template>
-                <style>
-                  [role="tablist"]::-webkit-scrollbar {display: none;}
-
-                  :host {
-                    --predictive-search-column-width: 100%;
-                  }
-                </style>
-
-                <slot role="tablist" part="tab-list" name="title"></slot>
-                <slot part="tab-panels" name="content"></slot>
-              </template>
-
-              {%- if predictive_search.resources.products.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.products' | t -}}</button>
-
-                  {%- if section.settings.full_width -%}
-                    <button type="submit" class="text-with-icon group">
-                      <span><span class="reversed-link">{{ 'search.general.view_all' | t }}</span></span>
-                      <span class="circle-chevron group-hover:colors">{%- render 'icon' with 'chevron-right-small', direction_aware: true -%}</span>
-                    </button>
-                  {%- endif -%}
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for predictive_search.resources.products as item, type: 'product' -%}
-                </div>
-              {%- endif -%}
-            </x-tabs>
+            {%- if predictive_search.resources.products.size > 0 -%}
+              <div class="predictive-search__results v-stack gap-4 sm:gap-6">
+                {%- render 'predictive-search-result-item' for predictive_search.resources.products as item, type: 'product' -%}
+              </div>
+            {%- endif -%}
           {%- endif -%}
         {%- elsif search.performed -%}
           {%- if search.results_count > 0 -%}
-            <x-tabs class="predictive-search__tabs">
-              <template>
-                <style>
-                  [role="tablist"]::-webkit-scrollbar {display: none;}
+            {%- assign product_results = search.results | where: 'object_type', 'product' | slice: 0, 10 -%}
 
-                  :host {
-                    --predictive-search-column-width: 100%;
-                  }
-                </style>
-
-                <slot role="tablist" part="tab-list" name="title"></slot>
-                <slot part="tab-panels" name="content"></slot>
-              </template>
-
-              {%- assign product_results = search.results | where: 'object_type', 'product' | slice: 0, 10 -%}
-
-              {%- if product_results.size > 0 -%}
-                <div class="predictive-search__tab-item" slot="title">
-                  <button type="button" class="h5">{{- 'search.general.products' | t -}}</button>
-                </div>
-
-                <div class="predictive-search__tab-content v-stack gap-4 sm:gap-6" slot="content">
-                  {%- render 'predictive-search-result-item' for product_results as item, type: 'product' -%}
-                </div>
-              {%- endif -%}
-            </x-tabs>
+            {%- if product_results.size > 0 -%}
+              <div class="predictive-search__results v-stack gap-4 sm:gap-6">
+                {%- render 'predictive-search-result-item' for product_results as item, type: 'product' -%}
+              </div>
+            {%- endif -%}
           {%- endif -%}
         {%- endif -%}
       </div>
