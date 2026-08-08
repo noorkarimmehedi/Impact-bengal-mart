@@ -308,7 +308,7 @@
         "title": "ALL PRODUCTS",
         "link_url": "",
         "link_text": "",
-        "heading_font": "assistant_n4",
+        "heading_font": "system_ui_n4",
         "card_corner_radius": 4,
         "mobile_card_gap": 14,
         "background": "",
