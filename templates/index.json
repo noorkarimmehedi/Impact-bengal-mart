@@ -77,6 +77,8 @@
         "ai_gen_block_f031582_LFGh7x": {
           "type": "ai_gen_block_f031582",
           "settings": {
+            "image_desktop": "shopify://shop_images/spacejoy-9M66C_w_ToM-unsplash.jpg",
+            "image_mobile": "shopify://shop_images/spacejoy-9M66C_w_ToM-unsplash.jpg",
             "show_overlay": true,
             "overlay_color": "#000000",
             "overlay_opacity": 5,
