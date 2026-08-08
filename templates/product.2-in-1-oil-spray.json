@@ -194,7 +194,7 @@
             "slide_rounding": "6",
             "slide_spacing": 16,
             "padding_top": 40,
-            "pagination": "below",
+            "pagination": "overlay",
             "alignment": "center",
             "click_action": "fullscreen",
             "float_location": "bottom_right",
