@@ -715,25 +715,30 @@ the underlying logic of the menu.
     }, { signal: cleanup.signal });
 
     // Handle click/tap outside to close predictive search
-    // Use pointerdown so we detect the intent early, but delay the close
-    // so that any anchor link inside the dropdown can fire its click/navigation first
-    document.addEventListener('pointerdown', function(e) {
+    document.addEventListener('click', function(e) {
       if (!searchForm.contains(e.target)) {
-        // Small delay so any link inside the dropdown can navigate before we remove the class
-        setTimeout(function() {
-          predictiveSearch.classList.remove('is-active');
-        }, 300);
+        predictiveSearch.classList.remove('is-active');
       }
     }, { signal: cleanup.signal });
 
-    // When a product link inside the dropdown is tapped/clicked, let it navigate
+    // When a product link inside the dropdown is tapped/clicked, navigate directly
     predictiveSearch.addEventListener('click', function(e) {
       const link = e.target.closest('a[href]');
       if (link) {
-        // Allow the default navigation to happen; close dropdown after a short delay
-        setTimeout(function() {
-          predictiveSearch.classList.remove('is-active');
-        }, 100);
+        e.preventDefault();
+        e.stopPropagation();
+        predictiveSearch.classList.remove('is-active');
+        window.location.href = link.href;
+      }
+    }, { signal: cleanup.signal });
+
+    // Mobile touch support - ensure links work on tap
+    predictiveSearch.addEventListener('touchend', function(e) {
+      const link = e.target.closest('a[href]');
+      if (link) {
+        e.preventDefault();
+        predictiveSearch.classList.remove('is-active');
+        window.location.href = link.href;
       }
     }, { signal: cleanup.signal });
 
